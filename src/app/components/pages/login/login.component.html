@@ -1,0 +1,21 @@
+<div class="flex justify-between items-center h-full">
+  <section class="relative flex flex-col justify-evenly md:flex md:flex-col md:items-center md:justify-center h-full flex-1 bg-primary-color md:rounded-tr-[60px] md:rounded-br-[60px]">
+    <div class="md:absolute md:top-5 texts text-second-color text-center">
+      <h1 class="font-koulen text-5xl md:text-7xl text-second-color">REALIZAR LOGIN</h1>
+      <h3 class="font-lato text-3xl md:text-5xl">Insira os dados abaixo para entrar na aplicação</h3>
+    </div>
+    <form class="w-full flex flex-col items-center justify-center">
+      <div class="flex flex-col gap-4 w-2/3">
+        <app-inputs [id]="'name'" [label]="'Nome'" [type]="'text'"/>
+        <app-inputs [id]="'password'" [label]="'Senha'" [type]="'password'"/>
+        <p class="text-second-color text-base font-lato">Não possui conta?<a routerLink="/cadastro" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o cadastro</a></p>
+        <button class="p-2 bg-second-color font-lato font-bold text-xl text-primary-color rounded-md">
+          ENTRAR
+        </button>
+      </div>
+    </form>
+  </section>
+  <picture class="h-full w-2/5 hidden md:flex justify-center items-center">
+    <img src="/assets/logo-catolica.png" alt="Logo da Faculdade Católica da Paraíba">
+  </picture>
+</div>
