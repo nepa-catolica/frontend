@@ -13,9 +13,7 @@
         <app-inputs [id]="'email'" [label]="'Email'" [type]="'email'"/>
         <app-inputs [id]="'password'" [label]="'Senha'" [type]="'password'"/>
         <p class="text-second-color text-base font-lato">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>
-        <button class="p-2 bg-second-color font-lato font-bold text-base md:text-xl text-primary-color rounded-md">
-          CADASTRAR USUÁRIO
-        </button>
+        <app-btn-login-register [text]="'CADASTRAR USUÁRIO'" />
       </div>
     </form>
   </section>
