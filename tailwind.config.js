@@ -13,7 +13,7 @@ module.exports = {
       },
       fontFamily: {
         lato: "Lato",
-        koulen: "Koulen"
+        roboto: "Roboto"
       }
     },
   },

@@ -4,10 +4,16 @@
       <h1 class="font-koulen text-5xl md:text-7xl text-second-color">REALIZAR LOGIN</h1>
       <h3 class="font-lato text-3xl md:text-5xl">Insira os dados abaixo para entrar na aplicação</h3>
     </div>
-    <form class="w-full flex flex-col items-center justify-center">
+    <form [formGroup]="form" (submit)="login()" class="w-full flex flex-col items-center justify-center">
       <div class="flex flex-col gap-4 w-2/3">
-        <app-inputs [id]="'email'" [label]="'Email'" [type]="'email'"/>
-        <app-inputs [id]="'password'" [label]="'Senha'" [type]="'password'"/>
+        <div class="flex flex-col text-second-color">
+          <label for="identifier" class="text-base font-lato">Matrícula/Email</label>
+          <input type="text" id="identifier" name="identifier" class="bg-transparent rounded-md border-2 border-second-color" formControlName="identifier">
+        </div>
+        <div class="flex flex-col text-second-color">
+          <label for="password" class="text-base font-lato">Senha</label>
+          <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="password">
+        </div>
         <p class="text-second-color text-base font-lato">Não possui conta?<a routerLink="/cadastro" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o cadastro</a></p>
         <app-btn-login-register [text]="'ENTRAR'"/>
       </div>

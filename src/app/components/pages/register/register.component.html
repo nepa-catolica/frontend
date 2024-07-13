@@ -4,14 +4,47 @@
   </picture>
   <section class="relative flex flex-col justify-evenly md:flex md:flex-col md:items-center md:justify-center h-full flex-1 bg-primary-color md:rounded-tl-[60px] md:rounded-bl-[60px]">
     <div class="md:absolute md:top-5 texts text-second-color text-center">
-      <h1 class="font-koulen text-5xl md:text-7xl text-second-color">BEM VINDO AO NEPA</h1>
+      <h1 class="font-roboto font-bold text-5xl md:text-7xl text-second-color">BEM VINDO AO NEPA</h1>
       <h3 class="font-lato text-3xl md:text-5xl">Núcleo de Extensão e Pesquisa acadêmica</h3>
     </div>
-    <form class="w-full flex flex-col items-center justify-center">
+    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center">
       <div class="flex flex-col gap-4 w-2/3">
-        <app-inputs [id]="'name'" [label]="'Nome'" [type]="'text'"/>
-        <app-inputs [id]="'email'" [label]="'Email'" [type]="'email'"/>
-        <app-inputs [id]="'password'" [label]="'Senha'" [type]="'password'"/>
+        <div class="flex flex-col text-second-color">
+          <label for="name" class="text-base font-lato">Nome</label>
+          <input type="text" id="name" name="name" class="bg-transparent rounded-md border-2 border-second-color" formControlName="nome">
+        </div>
+        <div class="flex flex-col text-second-color">
+          <label for="email" class="text-base font-lato">Email</label>
+          <input type="email" id="email" name="email" class="bg-transparent rounded-md border-2 border-second-color" formControlName="email">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex flex-col text-second-color">
+            <label for="registration" class="text-base font-lato">Matrícula</label>
+            <input type="text" id="registration" name="registration" class="bg-transparent rounded-md border-2 border-second-color" formControlName="matricula">
+          </div>
+          <div class="flex flex-col text-second-color">
+            <label for="course" class="text-base font-lato">Curso</label>
+            <input type="text" id="course" name="course" class="bg-transparent rounded-md border-2 border-second-color" formControlName="curso">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex flex-col text-second-color">
+            <label for="phone" class="text-base font-lato">Telefone</label>
+            <input type="text" id="phone" name="id" class="bg-transparent rounded-md border-2 border-second-color" formControlName="telefone">
+          </div>
+          <div class="flex flex-col text-second-color">
+            <label for="password" class="text-base font-lato">Senha</label>
+            <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="password">
+          </div>
+        </div>
+        <div class="flex flex-col text-second-color">
+          <label for="role" class="text-base font-lato">Tipo de usuário</label>
+          <select id="role" class="bg-transparent rounded-md border-2 border-second-color" formControlName="role">
+            <option selected>Escolha o tipo de usuário</option>
+            <option class="text-black" value="professor">Professor</option>
+            <option class="text-black" value="aluno">Aluno</option>
+          </select>
+        </div>
         <p class="text-second-color text-base font-lato">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>
         <app-btn-login-register [text]="'CADASTRAR USUÁRIO'" />
       </div>
