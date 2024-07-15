@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -8,7 +8,7 @@ import { LoginService } from '../../../services/login/login.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent, NgOptimizedImage],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,8 +19,8 @@ export class LoginComponent {
   router = inject(Router);
 
   form: FormGroup = this.formBuilderService.group({
-    identifier: ['gustavo@gmail.com', [Validators.required]],
-    password: ['123456', [Validators.required, Validators.minLength(6)]]
+    identifier: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   login() {
