@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonLoginRegisterComponent } from '../../buttons/login-register/login-register.component';
 import { RegisterService } from '../../../services/register/register.service';
+import { passwordMatchValidator } from '../../../validators/passwordMatchValidator';
 
 @Component({
   selector: 'app-register',
@@ -25,14 +26,16 @@ export class RegisterComponent {
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', Validators.required],
     role: ['', [Validators.required]]
-  })
+  }, {validators: passwordMatchValidator});
 
   register() {
-    console.log(this.form)
-
     if (this.form.valid) {
-      this.registerSerivice.registerUser(this.form.value).subscribe();
+      const { confirmPassword, ...formData } = this.form.value;
+      this.registerSerivice.registerUser(formData).subscribe();
+    } else {
+      console.log('Formulário inválido');
     }
   }
 }
