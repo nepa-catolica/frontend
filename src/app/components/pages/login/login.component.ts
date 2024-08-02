@@ -25,7 +25,15 @@ export class LoginComponent {
 
   login() {
     if (this.form.valid) {
-      this.loginService.login(this.form.value);
+      this.loginService.login(this.form.value).subscribe(
+        () => {
+          this.router.navigate(['/home']);
+        },
+        error => {
+          console.log('Erro de login', error);
+        }
+      );
+      this.router.navigate(['/home']);
     }
   }
 

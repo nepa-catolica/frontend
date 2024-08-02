@@ -29,10 +29,10 @@ export class RegisterComponent {
   })
 
   register() {
+    console.log(this.form)
+
     if (this.form.valid) {
-      this.registerSerivice.registerUser(this.form.value).subscribe(() => {
-        this.router.navigate(['/']);
-      })
+      this.registerSerivice.registerUser(this.form.value).subscribe();
     }
   }
 }
