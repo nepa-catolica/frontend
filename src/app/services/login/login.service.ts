@@ -1,11 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { IAuth } from '../../models/IAuth';
-import { take, tap } from 'rxjs';
+import { catchError, of, take, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 import { ISubToken } from '../../models/ISubToken';
+import { jwtDecode } from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,25 @@ import { ISubToken } from '../../models/ISubToken';
 export class LoginService {
 
   private http = inject(HttpClient);
-  private router = inject(Router)
+  private router = inject(Router);
+  private toast = inject(ToastrService);
 
   login(user: FormGroup) {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post<IAuth>(`/api/auth/api/login`, user, { headers }).pipe(
       tap(res => {
         if (res && res.access_token) {
+          this.toast.success('Login realizado com sucesso!')
           localStorage.setItem('token', res.access_token);
         }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          console.error('Falha no login: usuário não foi aprovado!');
+          this.toast.error('Falha no login: usuário não foi aprovado!');
+          return of(null);
+        }
+        return throwError(() => error);
       })
     );
   }
