@@ -24,7 +24,6 @@ export class SidebarComponent implements OnInit {
     initFlowbite();
 
     this.subToken = this.loginService.decodeToken();
-    console.log
   }
 
   logout() {
