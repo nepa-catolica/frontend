@@ -1,12 +1,12 @@
   <!-- drawer init and show -->
-  <div class="text-center fixed left-5 top-5">
+  <div class="text-center fixed left-5 top-5 z-40">
   <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-4 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 drop-shadow-lg hover:scale-110 transition-all" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
     <i class="bi bi-arrow-right-short"></i>
   </button>
   </div>
 
 <!-- drawer component -->
-<div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
+<div id="drawer-navigation" class="fixed top-0 left-0 z-50 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
   <a routerLink="/home" class="flex items-center  gap-2">
     <img src="/assets/logo-nepa.png" width="36" alt="">
     <h3 id="drawer-navigation-label" class="text-lg font-poppins font-semibold text-gray-500 uppercase dark:text-gray-400">NEPA</h3>
@@ -32,7 +32,7 @@
             <li>
               <a routerLink="#" class="flex items-center w-full p-2 text-gray-900 text-left transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ver projetos</a>
             </li>
-            <li *ngIf="subToken?.role != 'Aluno'">
+            <li *ngIf="subToken?.role != 'Aluno'" routerLink="/criarprojeto">
               <a routerLink="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Cadastrar projeto</a>
             </li>
           </ul>

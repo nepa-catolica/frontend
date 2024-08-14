@@ -1,18 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IUser } from '../../models/IUser';
 import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class ProjectService {
 
-  private http = inject(HttpClient);
+  http = inject(HttpClient);
 
-  createUser(user: FormGroup) {
+  createProject(project: FormGroup) {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post<IUser>(`/api/auth/api/register`, user, { headers }).pipe(take(1));
+    return this.http.post('api/projetos/api/create', project, {headers}).pipe(take(1));
   }
 }

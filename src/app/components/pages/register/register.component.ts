@@ -33,7 +33,7 @@ export class RegisterComponent {
   register() {
     if (this.form.valid) {
       const { confirmPassword, ...formData } = this.form.value;
-      this.registerSerivice.registerUser(formData).subscribe();
+      this.registerSerivice.createUser(formData).subscribe();
     } else {
       console.log('Formulário inválido');
     }
