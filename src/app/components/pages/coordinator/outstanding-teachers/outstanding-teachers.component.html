@@ -1,0 +1,64 @@
+<div class="relative flex flex-col items-center justify-center h-full">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute top-0"><path fill="#FFCC00" fill-opacity="1" d="M0,96L8,106.7C16,117,32,139,48,165.3C64,192,80,224,96,202.7C112,181,128,107,144,90.7C160,75,176,117,192,144C208,171,224,181,240,181.3C256,181,272,171,288,170.7C304,171,320,181,336,165.3C352,149,368,107,384,80C400,53,416,43,432,85.3C448,128,464,224,480,218.7C496,213,512,107,528,53.3C544,0,560,0,576,26.7C592,53,608,107,624,154.7C640,203,656,245,672,218.7C688,192,704,96,720,69.3C736,43,752,85,768,112C784,139,800,149,816,133.3C832,117,848,75,864,69.3C880,64,896,96,912,96C928,96,944,64,960,74.7C976,85,992,139,1008,154.7C1024,171,1040,149,1056,154.7C1072,160,1088,192,1104,213.3C1120,235,1136,245,1152,234.7C1168,224,1184,192,1200,197.3C1216,203,1232,245,1248,256C1264,267,1280,245,1296,245.3C1312,245,1328,267,1344,256C1360,245,1376,203,1392,181.3C1408,160,1424,160,1432,160L1440,160L1440,0L1432,0C1424,0,1408,0,1392,0C1376,0,1360,0,1344,0C1328,0,1312,0,1296,0C1280,0,1264,0,1248,0C1232,0,1216,0,1200,0C1184,0,1168,0,1152,0C1136,0,1120,0,1104,0C1088,0,1072,0,1056,0C1040,0,1024,0,1008,0C992,0,976,0,960,0C944,0,928,0,912,0C896,0,880,0,864,0C848,0,832,0,816,0C800,0,784,0,768,0C752,0,736,0,720,0C704,0,688,0,672,0C656,0,640,0,624,0C608,0,592,0,576,0C560,0,544,0,528,0C512,0,496,0,480,0C464,0,448,0,432,0C416,0,400,0,384,0C368,0,352,0,336,0C320,0,304,0,288,0C272,0,256,0,240,0C224,0,208,0,192,0C176,0,160,0,144,0C128,0,112,0,96,0C80,0,64,0,48,0C32,0,16,0,8,0L0,0Z"></path></svg>
+
+  <div class="relative overflow-x-auto drop-shadow-2xl sm:rounded-lg">
+      <div class="flex items-center justify-center flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+          <label for="table-search" class="sr-only">Search</label>
+          <div class="relative">
+              <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar professores">
+          </div>
+      </div>
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                  <th scope="col" class="p-4">
+                      ID
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Nome
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Email
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Curso
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Matrícula
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Ação
+                  </th>
+              </tr>
+          </thead>
+          <tbody *ngFor="let teacher of teachers$ | async">
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td class="w-4 p-4">
+                      {{teacher.Id}}
+                  </td>
+                  <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                      <div class="text-base font-semibold">{{teacher.Nome}}</div>
+                  </th>
+                  <td class="px-6 py-4">
+                      {{teacher.Email}}
+                  </td>
+                  <td class="px-6 py-4">
+                      {{teacher.Curso}}
+                  </td>
+                  <td class="px-6 py-4">
+                      {{teacher.Matricula}}
+                  </td>
+                  <td class="flex items-center gap-4 px-6 py-4">
+                    <button type="button" (click)="approveTeacher(teacher.Id)" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Aprovar</button>
+                    <button type="button" (click)="reproveTeacher(teacher.Id)" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reprovar</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

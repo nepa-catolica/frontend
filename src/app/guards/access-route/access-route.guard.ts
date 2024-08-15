@@ -10,7 +10,7 @@ export const accessRouteGuard: CanActivateFn = (route, state) => {
   const access = route.data['roles'];
   const permissions = loginService.decodeToken();
 
-  if (permissions.role === 'Admin' || permissions.role === 'Professor') {
+  if (permissions.role === 'admin' || permissions.role === 'Professor') {
     return true;
   }
 

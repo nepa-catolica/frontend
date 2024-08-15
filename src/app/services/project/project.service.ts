@@ -11,7 +11,6 @@ export class ProjectService {
   http = inject(HttpClient);
 
   createProject(project: FormGroup) {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('api/projetos/api/create', project, {headers}).pipe(take(1));
+    return this.http.post('api/projetos/api/create', project).pipe(take(1));
   }
 }

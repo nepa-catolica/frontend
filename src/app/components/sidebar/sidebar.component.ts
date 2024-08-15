@@ -21,9 +21,8 @@ export class SidebarComponent implements OnInit {
   subToken: ISubToken | null = null;
 
   ngOnInit(): void {
-    initFlowbite();
-
     this.subToken = this.loginService.decodeToken();
+    initFlowbite();
   }
 
   logout() {

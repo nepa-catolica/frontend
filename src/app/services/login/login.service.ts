@@ -18,8 +18,7 @@ export class LoginService {
   private toast = inject(ToastrService);
 
   login(user: FormGroup) {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post<IAuth>(`/api/auth/api/login`, user, { headers }).pipe(
+    return this.http.post<IAuth>(`/api/auth/api/login`, user).pipe(
       tap(res => {
         if (res && res.access_token) {
           this.toast.success('Login realizado com sucesso!')
@@ -39,20 +38,17 @@ export class LoginService {
 
   getToken() {
     const token = localStorage.getItem('token');
-    if (token != null) {
+    if (token && !this.isTokenExpired(token)) {
       return token;
     }
 
+    this.logout();
     return null;
   }
 
   isLogged(): boolean {
-    const token = localStorage.getItem('token');
-    if (token != null) {
-      return true;
-    }
-
-    return false;
+    const token = this.getToken();
+    return token != null;
   }
 
   getExpirationToken(token: string) {
