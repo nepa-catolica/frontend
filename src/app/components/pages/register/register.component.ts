@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFo
 import { ButtonLoginRegisterComponent } from '../../buttons/login-register/login-register.component';
 import { RegisterService } from '../../../services/register/register.service';
 import { passwordMatchValidator } from '../../../validators/passwordMatchValidator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent {
   registerSerivice = inject(RegisterService);
   formBuilderService = inject(NonNullableFormBuilder);
   router = inject(Router);
+  toast = inject(ToastrService);
 
   form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
@@ -33,9 +35,11 @@ export class RegisterComponent {
   register() {
     if (this.form.valid) {
       const { confirmPassword, ...formData } = this.form.value;
+      this.toast.success("Usuário criado com sucesso!");
       this.registerSerivice.createUser(formData).subscribe();
     } else {
-      console.log('Formulário inválido');
+      this.toast.error("Erro ao criar usuário!");
+      console.error('Formulário inválido');
     }
   }
 }

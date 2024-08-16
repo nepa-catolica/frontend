@@ -19,8 +19,5 @@ export class ApprovedTeachersComponent implements OnInit{
 
   ngOnInit(): void {
     this.teachers$ = this.teacherService.getTeachers();
-    this.teachers$.subscribe(
-      teachers => console.log(teachers)
-    )
   }
 }

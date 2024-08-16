@@ -30,7 +30,7 @@ export class LoginComponent {
           this.router.navigate(['/home']);
         },
         error => {
-          console.log('Erro de login', error);
+          console.error('Erro de login', error);
         }
       );
       this.router.navigate(['/home']);
