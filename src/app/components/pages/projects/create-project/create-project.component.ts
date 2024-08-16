@@ -41,7 +41,7 @@ export class CreateProjectComponent {
           this.toast.success('Projeto criado com sucesso!');
           this.router.navigate(['/home']);
         },
-        (error) => this.toast.error('Erro ao criar porjeto!')
+        (error) => this.toast.error(`${error.error.message}`)
       );
     }
   }
