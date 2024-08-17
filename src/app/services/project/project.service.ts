@@ -8,7 +8,7 @@ import { take } from 'rxjs';
 })
 export class ProjectService {
 
-  http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   createProject(project: FormGroup) {
     return this.http.post('api/projetos/api/create', project).pipe(take(1));

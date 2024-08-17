@@ -8,7 +8,7 @@ import { ITeacher } from '../../models/ITeacher';
 })
 export class TeachersService {
 
-  http = inject(HttpClient);
+  private http = inject(HttpClient);
 
   approveTeachers(teacherId: number) {
     return this.http.post(`/api/admin/api/aprovar/professor/${teacherId}`, null).pipe(take(1));
