@@ -1,23 +1,35 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { TeachersService } from '../../../../services/teachers/teachers.service';
 import { ITeacher } from '../../../../models/ITeacher';
 import { CommonModule, NgFor } from '@angular/common';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-approved-teachers',
   standalone: true,
-  imports: [CommonModule, NgFor],
+  imports: [CommonModule, FormsModule, NgFor],
   templateUrl: './approved-teachers.component.html',
   styleUrl: './approved-teachers.component.css'
 })
 export class ApprovedTeachersComponent implements OnInit{
 
-  teacherService = inject(TeachersService);
+  private teacherService = inject(TeachersService);
 
-  teachers$: Observable<ITeacher[]> = new Observable<ITeacher[]>();
+  public teachers$: Observable<ITeacher[]> = new Observable<ITeacher[]>();
+  public filter: string = "";
 
   ngOnInit(): void {
     this.teachers$ = this.teacherService.getTeachers();
+  }
+
+  filterTeachers() {
+    this.teachers$ = this.teacherService.getTeachers().pipe(
+      map(
+        (teachers: ITeacher[]) => teachers.filter(
+          (teacher: ITeacher) => teacher.Nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+        )
+      )
+    )
   }
 }

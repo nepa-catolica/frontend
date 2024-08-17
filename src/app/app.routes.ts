@@ -4,6 +4,11 @@ import { accessRouteGuard } from './guards/access-route/access-route.guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  {
     path: 'cadastro',
     loadComponent: () => import('./components/pages/register/register.component').then((c) => c.RegisterComponent)
   },

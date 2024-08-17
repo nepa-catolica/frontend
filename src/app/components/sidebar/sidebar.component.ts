@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login/login.service';
 import { initFlowbite } from 'flowbite';
 import { ISubToken } from '../../models/ISubToken';
 import { NgIf } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,16 +15,16 @@ import { NgIf } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
 
-  loginService = inject(LoginService);
-  cd = inject(ChangeDetectorRef);
-  router = inject(Router);
-
-  subToken: ISubToken | null = null;
+  private loginService = inject(LoginService);
+  private cd = inject(ChangeDetectorRef);
+  private router = inject(Router);
+  private toast = inject(ToastrService);
+  public subToken: ISubToken | null = null;
+  public isDropdownOpen: { [key: string]: boolean} = {};
 
   ngOnInit(): void {
     this.subToken = this.loginService.decodeToken();
     initFlowbite();
-    console.log(this.subToken);
   }
 
   logout() {

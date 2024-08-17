@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TeachersService } from '../../../../services/teachers/teachers.service';
 import { CommonModule, NgFor } from '@angular/common';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { ITeacher } from '../../../../models/ITeacher';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -15,11 +15,12 @@ import { Router } from '@angular/router';
 })
 export class OutstandingTeachersComponent implements OnInit {
 
-  teacherService = inject(TeachersService);
-  toast = inject(ToastrService);
-  router = inject(Router);
+  private teacherService = inject(TeachersService);
+  private toast = inject(ToastrService);
+  private router = inject(Router);
 
-  teachers$: Observable<ITeacher[]> = new Observable<ITeacher[]>();
+  public teachers$: Observable<ITeacher[]> = new Observable<ITeacher[]>();
+  public filter: string = "";
 
   ngOnInit(): void {
     this.loadTeachers();
@@ -58,5 +59,15 @@ export class OutstandingTeachersComponent implements OnInit {
     ).subscribe((teachers) => {
       this.teachers$ = of(teachers);
     })
+  }
+
+  filterTeachers() {
+    this.teachers$ = this.teacherService.getOutstandingTeachers().pipe(
+      map(
+        (teachers: ITeacher[]) => teachers.filter(
+          (teacher: ITeacher) => teacher.Nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+        )
+      )
+    )
   }
 }
