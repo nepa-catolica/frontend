@@ -10,6 +10,8 @@ module.exports = {
         "primary-color": "#002266",
         "second-color": "#F5F5F5",
         "tertiary-color": "#FFCC00",
+        "gray-color": "#4B5563",
+        "bold-gray-color": "#1F2937"
       },
       fontFamily: {
         lato: "Lato",

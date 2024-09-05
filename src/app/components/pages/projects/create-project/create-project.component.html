@@ -1,27 +1,214 @@
 <div class="relative flex flex-col items-center justify-center h-full">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute top-0"><path fill="#1e429f" fill-opacity="1" d="M0,192L21.8,160C43.6,128,87,64,131,53.3C174.5,43,218,85,262,106.7C305.5,128,349,128,393,128C436.4,128,480,128,524,122.7C567.3,117,611,107,655,133.3C698.2,160,742,224,785,234.7C829.1,245,873,203,916,192C960,181,1004,203,1047,176C1090.9,149,1135,75,1178,64C1221.8,53,1265,107,1309,144C1352.7,181,1396,203,1418,213.3L1440,224L1440,0L1418.2,0C1396.4,0,1353,0,1309,0C1265.5,0,1222,0,1178,0C1134.5,0,1091,0,1047,0C1003.6,0,960,0,916,0C872.7,0,829,0,785,0C741.8,0,698,0,655,0C610.9,0,567,0,524,0C480,0,436,0,393,0C349.1,0,305,0,262,0C218.2,0,175,0,131,0C87.3,0,44,0,22,0L0,0Z"></path></svg>
 
-  <div class="h-fit xl:w-1/2 md:w-1/2 flex flex-col items-center justify-center bg-white drop-shadow-2xl rounded-md p-10 z-30">
+  <div class="h-fit xl:w-1/2 md:w-1/2 flex flex-col items-center justify-center bg-white drop-shadow-2xl rounded-md p-5 z-30">
     <div class="w-full text-center">
       <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">Cadastre seu projeto</h1>
-      <p class="mb-6 text-lg font-normal text-black lg:text-xl sm:px-16 xl:px-24 dark:text-gray-400">
-          Preencha as informações abaixo para cadastrar um novo projeto.
-      </p>
     </div>
     <form class="w-full" [formGroup]="form" (submit)="createProject()">
-      <div class="mb-5">
-        <label for="name-project" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do projeto:<span class="text-red-700">*</span></label>
-        <input formControlName="nome" type="text" id="name-project" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o nome do projeto" required />
-      </div>
-      <div class="mb-5">
-        <label for="description-project" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do projeto:<span class="text-red-700">*</span></label>
-        <textarea formControlName="descricao" id="description-project" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a descrição do projeto..."></textarea>
-      </div>
-      <div class="mb-5">
-        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="pdf-project">Documento do projeto:</label>
-        <input (change)="getPdf($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="pdf-project" id="pdf-project" type="file" accept="application/pdf">
-      </div>
-      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cadastrar projeto</button>
+      @if (formPage == 1) {
+        <div class="form-page-1 w-full transition-all">
+          <div class="mb-5">
+            <label for="name-project" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título do projeto:<span class="text-red-700">*</span></label>
+            <input formControlName="titulo" type="text" id="name-project" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o título do projeto" required />
+          </div>
+          <div class="flex items-center justify-between">
+            <fieldset>
+              <legend class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulação do professor proponente:<span class="text-red-700">*</span></legend>
+              <div class="flex items-center gap-4">
+                <div class="flex items-center mb-4">
+                  <input formControlName="titulacao" id="especialista" type="radio" value="especialista" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="especialista" class="block ms-1  text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Especialista
+                  </label>
+                </div>
+        
+                <div class="flex items-center mb-4">
+                  <input formControlName="titulacao" id="mestre" type="radio" value="mestre" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="mestre" class="block ms-1 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Mestre
+                  </label>
+                </div>
+        
+                <div class="flex items-center mb-4">
+                  <input formControlName="titulacao" id="doutor" type="radio" value="doutor" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="doutor" class="block ms-1 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Doutor
+                  </label>
+                </div>
+        
+                <div class="flex items-center mb-4">
+                  <input formControlName="titulacao" id="pos-doutor" type="radio" value="pos-doutor" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus-ring-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="pos-doutor" class="block ms-1 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Pós Doutor
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+    
+            <fieldset>
+              <legend class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Situação do projeto:<span class="text-red-700">*</span></legend>
+              <div class="flex items-center gap-4">
+                <div class="flex items-center mb-4">
+                  <input formControlName="situacao" id="input-novo" type="radio" name="situacao" value="novo" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="input-novo" class="block ms-1  text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Novo
+                  </label>
+                </div>
+        
+                <div class="flex items-center mb-4">
+                  <input formControlName="situacao" id="andamento-input" type="radio" name="situacao" value="andamento" class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="andamento-input" class="block ms-1 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Em andamento
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+    
+            <div class="mb-5 flex flex-col">
+              <label for="course" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Curso:<span class="text-red-600">*</span></label>
+              <select id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="curso">
+                <option class="text-black" value="Educação Física">Ed. Física</option>
+                <option class="text-black" value="Ciências da Computação">C. da Computação</option>
+                <option class="text-black" value="Marketing">Marketing</option>
+                <option class="text-black" value="Direito">Direito</option>
+                <option class="text-black" value="Filosofia">Filosofia</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-5">
+            <label for="linhaDePesquisa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Linha de Pesquisa:<span class="text-red-700">*</span></label>
+            <textarea formControlName="linhaDePesquisa" id="linhaDePesquisa" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a linha de pesquisa do projeto..."></textarea>
+          </div>
+          <div class="mb-5">
+            <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do projeto:<span class="text-red-700">*</span></label>
+            <textarea formControlName="descricao" id="descricao" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a descrição do projeto..."></textarea>
+          </div>
+          <div class="relative">
+            <label for="keywords" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Palavras chave:<span class="text-red-700">*</span></label>
+            <input type="text" id="keywords" formControlName="palavrasChave" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Palavras chave" required />
+            <button type="button" (click)="addKeyword()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir palavra</button>
+          </div>
+
+          <div class="flex items-center gap-4 flex-grow">
+            @for (keyword of listKeywords; track $index) {
+              <p class="p-4 font-medium">{{keyword}}</p>
+            }
+          </div>
+
+          <div class="flex items-center mt-5">
+            <button type="button" class="text-white bg-gray-color hover:bg-gray-color focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed" disabled (click)="previousPage()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                <path fill-rule="evenodd" d="M7.28 7.72a.75.75 0 0 1 0 1.06l-2.47 2.47H21a.75.75 0 0 1 0 1.5H4.81l2.47 2.47a.75.75 0 1 1-1.06 1.06l-3.75-3.75a.75.75 0 0 1 0-1.06l3.75-3.75a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">Icon description</span>
+            </button>
+            <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="nextPage()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">Icon description</span>
+            </button>
+          </div>
+        </div>
+      } @else if (formPage == 2)  {
+        <div class="form-page-2 w-full transition-all">
+          <div class="mb-5">
+            <label for="localizacao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Localização:<span class="text-red-700">*</span></label>
+            <input formControlName="localizacao" type="text" id="localizacao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(Informar onde serão desenvolvidas as ações)" required />
+          </div>
+
+          <div class="mb-5">
+            <label for="populacao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">População - Alvo:<span class="text-red-700">*</span></label>
+            <input formControlName="populacao" type="text" id="populacao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(Informar qual população a ser envolvida, descrevendo-a e quantificando-a.)" required />
+          </div>
+
+          <div class="mb-5">
+            <label for="justificativa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Justifcativa:<span class="text-red-700">*</span></label>
+            <textarea formControlName="justificativa" id="justificativa" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a justificativa do projeto..."></textarea>
+          </div>
+    
+          <div class="mb-5">
+            <label for="objetivoGeral" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivo geral:<span class="text-red-700">*</span></label>
+            <textarea formControlName="objetivoGeral" id="objetivoGeral" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o objetivo geral do projeto..."></textarea>
+          </div>
+          <div class="mb-5">
+            <label for="objetivoEspecifico" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivos específicos:<span class="text-red-700">*</span></label>
+            <textarea formControlName="objetivoEspecifico" id="objetivoEspecifico" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe os objetivos específicos do projeto..."></textarea>
+          </div>
+        
+          <div class="flex items-center">
+            <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="previousPage()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                <path fill-rule="evenodd" d="M7.28 7.72a.75.75 0 0 1 0 1.06l-2.47 2.47H21a.75.75 0 0 1 0 1.5H4.81l2.47 2.47a.75.75 0 1 1-1.06 1.06l-3.75-3.75a.75.75 0 0 1 0-1.06l3.75-3.75a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">Icon description</span>
+            </button>
+            <button type="button" class="text-white  bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="nextPage()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+              </svg>
+              <span class="sr-only">Icon description</span>
+            </button>
+          </div>
+        </div>
+      } @else if (formPage == 3) {
+        <div class="form-page-2 w-full transition-all">
+          <div class="relative">
+            <label for="metodologia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metodologia:<span class="text-red-700">*</span></label>
+            <input type="text" id="metodologia" formControlName="metodologia" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a metodologia do projeto" required />
+            <button type="button" (click)="addMethodology()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir</button>
+          </div>
+
+          <div class="flex items-center gap-4 flex-grow">
+            @for (methodology of listMethodology; track $index) {
+              <p class="p-4 font-medium">{{methodology}}</p>
+            }
+          </div>
+
+          <div class="relative">
+            <label for="cronogramaDeAtividade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cronograma de atividades:<span class="text-red-700">*</span></label>
+            <input type="text" id="cronogramaDeAtividade" formControlName="cronogramaDeAtividade" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira atividades do cronograma" required />
+            <button type="button" (click)="addTimeline()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir</button>
+          </div>
+
+          <div class="w-full flex items-center gap-4 flex-wrap">
+            @for (timeline of listTimeline; track $index) {
+              <p class="p-4 font-medium flex-1">{{timeline}}</p>
+            }
+          </div>
+
+          <div class="mb-5">
+            <label for="referencias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referências:<span class="text-red-700">*</span></label>
+            <textarea formControlName="referencias" id="referencias" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira as referências"></textarea>
+          </div>
+
+          <div class="flex items-start mb-5">
+            <div class="flex items-center h-5">
+              <input id="remember" type="checkbox" formControlName="termos" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+            </div>
+            <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><span class="text-red-700">*</span>Aceito os termos de uso e a política de privacidade para o cadastro deste projeto!</label>
+          </div>
+        
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="previousPage()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                  <path fill-rule="evenodd" d="M7.28 7.72a.75.75 0 0 1 0 1.06l-2.47 2.47H21a.75.75 0 0 1 0 1.5H4.81l2.47 2.47a.75.75 0 1 1-1.06 1.06l-3.75-3.75a.75.75 0 0 1 0-1.06l3.75-3.75a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Icon description</span>
+              </button>
+              <button type="button" class="text-white  bg-gray-color hover:bg-bold-gray-color focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed" disabled (click)="nextPage()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                  <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Icon description</span>
+              </button>
+            </div>
+            <button type="button" (click)="createProject()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Enviar formulário</button>
+          </div>
+        </div>
+      }
     </form>
   </div>
 </div>

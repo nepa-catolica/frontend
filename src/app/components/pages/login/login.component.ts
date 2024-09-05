@@ -19,8 +19,8 @@ export class LoginComponent {
   router = inject(Router);
 
   form: FormGroup = this.formBuilderService.group({
-    identifier: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    identifier: ['admin@gmail.com', [Validators.required]],
+    password: ['123456', [Validators.required, Validators.minLength(6)]]
   })
 
   login() {

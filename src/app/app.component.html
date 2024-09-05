@@ -1,6 +1,8 @@
 <div class="h-screen">
-  <div *ngIf="!isLoginPage()">
-    <app-sidebar />
+  <div>
+    @if (!isLoginPage()) {
+      <app-sidebar />
+    }
   </div>
 
   <router-outlet/>

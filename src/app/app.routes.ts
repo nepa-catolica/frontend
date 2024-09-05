@@ -24,19 +24,19 @@ export const routes: Routes = [
   {
     path: 'criar-projeto',
     canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['admin', 'professor']},
+    data: {roles: ['Admin', 'professor']},
     loadComponent: () => import('./components/pages/projects/create-project/create-project.component').then((c) => c.CreateProjectComponent)
   },
   {
     path: 'aprovar-professor',
     canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['admin']},
+    data: {roles: ['Admin']},
     loadComponent: () => import('./components/pages/coordinator/outstanding-teachers/outstanding-teachers.component').then((c) => c.OutstandingTeachersComponent)
   },
   {
     path: 'professores-aprovados',
     canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['admin']},
+    data: {roles: ['Admin']},
     loadComponent: () => import('./components/pages/coordinator/approved-teachers/approved-teachers.component').then((c) => c.ApprovedTeachersComponent)
   }
 ];
