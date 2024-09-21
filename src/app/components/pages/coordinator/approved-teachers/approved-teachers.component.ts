@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { TeachersService } from '../../../../services/teachers/teachers.service';
-import { ITeacher } from '../../../../models/ITeacher';
+import { TeachersService } from '@/services/teachers/teachers.service';
+import { ITeacher } from '@/models/ITeacher';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TeachersService } from '../../../../services/teachers/teachers.service';
+import { TeachersService } from '@/services/teachers/teachers.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
-import { ITeacher } from '../../../../models/ITeacher';
+import { ITeacher } from '@/models/ITeacher';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 

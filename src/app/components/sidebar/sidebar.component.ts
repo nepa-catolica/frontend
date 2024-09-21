@@ -1,10 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { LoginService } from '../../services/login/login.service';
 import { initFlowbite } from 'flowbite';
-import { ISubToken } from '../../models/ISubToken';
-import { NgIf } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { NgIf } from '@angular/common';
+import { ISubToken } from '@/models/ISubToken';
+import { LoginService } from "@/services/login/login.service"
 
 @Component({
   selector: 'app-sidebar',

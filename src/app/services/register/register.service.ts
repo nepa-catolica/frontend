@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IUser } from '../../models/IUser';
+import { IUser } from '@/models/IUser';
 import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
 

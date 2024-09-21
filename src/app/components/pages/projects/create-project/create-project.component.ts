@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProjectService } from '../../../../services/project/project.service';
+import { ProjectService } from '@/services/project/project.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { v4 as uuidv4} from 'uuid';
 
 interface content {
   id: string;
@@ -93,8 +92,6 @@ export class CreateProjectComponent {
     methodologyControl?.setValue(this.listMethodology);
     timelineControl?.setValue(this.listTimeline);
 
-    console.log(this.form);
-    
     if (this.form.valid) {
       this.projectService.createProject(this.form.value).subscribe(
         () => {

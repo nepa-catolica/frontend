@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonLoginRegisterComponent } from '../../buttons/login-register/login-register.component';
-import { RegisterService } from '../../../services/register/register.service';
-import { passwordMatchValidator } from '../../../validators/passwordMatchValidator';
+import { ButtonLoginRegisterComponent } from '@/components/buttons/login-register/login-register.component';
+import { RegisterService } from '@/services/register/register.service';
+import { passwordMatchValidator } from '@/validators/passwordMatchValidator';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

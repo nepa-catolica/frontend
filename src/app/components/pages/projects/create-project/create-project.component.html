@@ -90,7 +90,7 @@
             <button type="button" (click)="addKeyword()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir palavra</button>
           </div>
 
-          <div class="flex items-center gap-4 flex-grow">
+          <div class="flex items-center gap-4 flex-wrap">
             @for (keyword of listKeywords; track $index) {
               <p class="p-4 font-medium">{{keyword}}</p>
             }
@@ -160,7 +160,7 @@
             <button type="button" (click)="addMethodology()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir</button>
           </div>
 
-          <div class="flex items-center gap-4 flex-grow">
+          <div class="flex items-center gap-4 flex-wrap">
             @for (methodology of listMethodology; track $index) {
               <p class="p-4 font-medium">{{methodology}}</p>
             }

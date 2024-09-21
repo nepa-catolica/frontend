@@ -2,8 +2,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ButtonLoginRegisterComponent } from '../../buttons/login-register/login-register.component';
-import { LoginService } from '../../../services/login/login.service';
+import { ButtonLoginRegisterComponent } from '@/components/buttons/login-register/login-register.component';
+import { LoginService } from '@/services/login/login.service';
 
 @Component({
   selector: 'app-login',

@@ -1,10 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { IAuth } from '../../models/IAuth';
 import { catchError, of, take, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { ISubToken } from '../../models/ISubToken';
+import { ISubToken } from '@/models/ISubToken';
+import { IAuth } from '@/models/IAuth';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
 

@@ -28,6 +28,12 @@ export const routes: Routes = [
     loadComponent: () => import('./components/pages/projects/create-project/create-project.component').then((c) => c.CreateProjectComponent)
   },
   {
+    path: 'projetos-aprovados',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin', 'professor']},
+    loadComponent: () => import('./components/pages/projects/approved-projects/approved-projects.component').then((c) => c.ApprovedProjectsComponent)
+  },
+  {
     path: 'aprovar-professor',
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin']},
