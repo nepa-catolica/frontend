@@ -6,6 +6,7 @@ import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideToastr } from 'ngx-toastr';
 import { authInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    })
+    }),
+    provideEnvironmentNgxMask(),
   ]
 };

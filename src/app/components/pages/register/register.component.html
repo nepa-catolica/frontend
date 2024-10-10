@@ -10,15 +10,36 @@
         <div class="flex flex-col text-second-color">
           <label for="name" class="font-bold text-base font-lato">Nome:<span class="text-red-600">*</span></label>
           <input type="text" id="name" name="name" class="bg-transparent rounded-md border-2 border-second-color" formControlName="nome">
+          @if (form.get('nome')?.touched) {
+            @if (form.get('nome')?.errors?.['required']) {
+              <small class="font-bold text-red-600">Campo obrigatório</small>
+            } @else if (form.get('nome')?.errors?.['minlength']) {
+              <small class="font-bold text-red-600">O nome deve possuir no mínimo 3 caracteres!</small>
+            }
+          }
         </div>
         <div class="flex flex-col text-second-color">
           <label for="email" class="font-bold text-base font-lato">Email:<span class="text-red-600">*</span></label>
           <input type="email" id="email" name="email" class="bg-transparent rounded-md border-2 border-second-color" formControlName="email">
+          @if (form.get('email')?.touched) {
+            @if (form.get('email')?.errors?.['required']) {
+              <small class="font-bold text-red-600">Campo obrigatório</small>
+            } @else if (form.get('email')?.errors?.['email']) {
+              <small class="font-bold text-red-600">Insira um email válido!</small>
+            }
+          }
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col text-second-color">
             <label for="registration" class="font-bold text-base font-lato">Matrícula:<span class="text-red-600">*</span></label>
             <input type="text" id="registration" name="registration" class="bg-transparent rounded-md border-2 border-second-color" formControlName="matricula">
+            @if (form.get('matricula')?.touched) {
+              @if (form.get('matricula')?.errors?.['required']) {
+                <small class="font-bold text-red-600">Campo obrigatório</small>
+              } @else if (form.get('matricula')?.errors?.['minlength']) {
+                <small class="font-bold text-red-600">A matrícula deve possuir no mínimo 6 dígitos!</small>
+              }
+            }
           </div>
           <div class="flex flex-col text-second-color">
             <label for="course" class="font-bold text-base font-lato">Curso:<span class="text-red-600">*</span></label>
@@ -29,16 +50,33 @@
               <option class="text-black" value="Direito">Direito</option>
               <option class="text-black" value="Filosofia">Filosofia</option>
             </select>
+            @if (form.get('curso')?.touched) {
+              @if (form.get('curso')?.errors?.['required']) {
+                <small class="font-bold text-red-600">Campo obrigatório</small>
+              }
+            }
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col text-second-color">
             <label for="password" class="font-bold text-base font-lato">Senha:<span class="text-red-600">*</span></label>
             <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="password">
+            @if (form.get('password')?.touched) {
+              @if (form.get('password')?.errors?.['required']) {
+                <small class="font-bold text-red-600">Campo obrigatório</small>
+              } @else if (form.get('password')?.errors?.['minlength']) {
+                <small class="font-bold text-red-600">A senha deve possuir no mínimo 6 dígitos!</small>
+              }
+            }
           </div>
           <div class="flex flex-col text-second-color">
             <label for="confirm-password" class="font-bold text-base font-lato">Confirmar senha:<span class="text-red-600">*</span></label>
             <input type="password" id="confirm-password" name="confirm-password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="confirmPassword">
+            @if (form.get('password')?.touched) {
+              @if (form.errors?.['passwordMismatch']) {
+                <small class="font-bold text-red-600">As senhas não conferem!</small>
+              }
+            }
           </div>
         </div>
         <div class="grid grid-cols-2 gap-4">
@@ -48,10 +86,22 @@
               <option class="text-black" value="professor">Professor</option>
               <option class="text-black" value="aluno">Aluno</option>
             </select>
+            @if (form.get('role')?.touched) {
+              @if (form.get('role')?.errors?.['required']) {
+                <small class="font-bold text-red-600">Campo obrigatório</small>
+              }
+            }
           </div>
           <div class="flex flex-col text-second-color">
             <label for="phone" class="font-bold text-base font-lato">Telefone:<span class="text-red-600">*</span></label>
-            <input type="text" id="phone" name="id" class="bg-transparent rounded-md border-2 border-second-color" formControlName="telefone">
+            <input type="text" id="phone" name="id" class="bg-transparent rounded-md border-2 border-second-color" formControlName="telefone" mask="(00) 0 0000-0000">
+            @if (form.get('telefone')?.touched) {
+              @if (form.get('telefone')?.errors?.['required']) {
+                <small class="font-bold text-red-600">Campo obrigatório</small>
+              } @else if (form.get('nome')?.errors?.['minlength']) {
+                <small class="font-bold text-red-600">O telefone deve possuir no mínimo 11 caracteres!</small>
+              }
+            }
           </div>
         </div>
         <p class="text-second-color text-base font-lato font-bold">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>

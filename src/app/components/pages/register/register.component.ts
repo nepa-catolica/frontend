@@ -6,11 +6,12 @@ import { ButtonLoginRegisterComponent } from '@/components/buttons/login-registe
 import { RegisterService } from '@/services/register/register.service';
 import { passwordMatchValidator } from '@/validators/passwordMatchValidator';
 import { ToastrService } from 'ngx-toastr';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -33,6 +34,8 @@ export class RegisterComponent {
   }, {validators: passwordMatchValidator});
 
   register() {
+    console.log(this.form)
+    console.log(this.form.get('password')?.errors)
     if (this.form.valid) {
       const { confirmPassword, ...formData } = this.form.value;
       this.toast.success("Usuário criado com sucesso!");

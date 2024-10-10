@@ -27,7 +27,7 @@ export class LoginService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          if (error.error.message === "Invalid credentials or professor not approved") {
+          if (error.error.error === "Invalid credentials") {
             this.toast.error('Usuário e/ou senha incorretos!');
           } else {
             this.toast.error('Falha no login: usuário não foi aprovado!');
