@@ -65,7 +65,7 @@ export class OutstandingTeachersComponent implements OnInit {
     this.teachers$ = this.teacherService.getOutstandingTeachers().pipe(
       map(
         (teachers: ITeacher[]) => teachers.filter(
-          (teacher: ITeacher) => teacher.Nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+          (teacher: ITeacher) => teacher.nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
         )
       )
     )

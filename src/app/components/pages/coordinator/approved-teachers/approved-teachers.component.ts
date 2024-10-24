@@ -21,13 +21,14 @@ export class ApprovedTeachersComponent implements OnInit{
 
   ngOnInit(): void {
     this.teachers$ = this.teacherService.getTeachers();
+    this.teachers$.subscribe(t => console.log(t))
   }
 
   filterTeachers() {
     this.teachers$ = this.teacherService.getTeachers().pipe(
       map(
         (teachers: ITeacher[]) => teachers.filter(
-          (teacher: ITeacher) => teacher.Nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+          (teacher: ITeacher) => teacher.nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
         )
       )
     )

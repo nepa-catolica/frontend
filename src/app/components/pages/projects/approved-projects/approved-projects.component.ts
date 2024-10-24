@@ -26,7 +26,7 @@ export class ApprovedProjectsComponent implements OnInit {
     this.projects$ = this.projectService.getAllApprovedProjects().pipe(
       map(
         (projects: IProject[]) => projects.filter(
-          (project: IProject) => project.nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+          (project: IProject) => project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
         )
       )
     )

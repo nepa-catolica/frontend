@@ -20,9 +20,9 @@ export class LoginService {
   login(user: FormGroup) {
     return this.http.post<IAuth>(`/api/auth/api/login`, user).pipe(
       tap(res => {
-        if (res && res.access_token) {
+        if (res && res.access_token && res.access_token.access_token) {
           this.toast.success('Login realizado com sucesso!')
-          localStorage.setItem('token', res.access_token);
+          localStorage.setItem('token', res.access_token.access_token);
         }
       }),
       catchError((error: HttpErrorResponse) => {

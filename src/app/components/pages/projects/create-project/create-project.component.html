@@ -78,24 +78,16 @@
           </div>
           <div class="mb-5">
             <label for="linhaDePesquisa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Linha de Pesquisa:<span class="text-red-700">*</span></label>
-            <textarea formControlName="linhaDePesquisa" id="linhaDePesquisa" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a linha de pesquisa do projeto..."></textarea>
+            <textarea formControlName="linhaDePesquisa" id="linhaDePesquisa" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a linha de pesquisa do projeto..."></textarea>
           </div>
           <div class="mb-5">
             <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do projeto:<span class="text-red-700">*</span></label>
             <textarea formControlName="descricao" id="descricao" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a descrição do projeto..."></textarea>
           </div>
           <div class="relative">
-            <label for="keywords" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Palavras chave:<span class="text-red-700">*</span></label>
-            <input type="text" id="keywords" formControlName="palavrasChave" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Palavras chave" required />
-            <button type="button" (click)="addKeyword()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir palavra</button>
+            <label for="palavrasChave" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Palavras chave:<span class="text-red-700">*</span></label>
+            <textarea formControlName="palavrasChave" id="palavrasChave" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Palavras chave..."></textarea>
           </div>
-
-          <div class="flex items-center gap-4 flex-wrap">
-            @for (keyword of listKeywords; track $index) {
-              <p class="p-4 font-medium">{{keyword}}</p>
-            }
-          </div>
-
           <div class="flex items-center mt-5">
             <button type="button" class="text-white bg-gray-color hover:bg-gray-color focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed" disabled (click)="previousPage()">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
@@ -125,16 +117,16 @@
 
           <div class="mb-5">
             <label for="justificativa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Justifcativa:<span class="text-red-700">*</span></label>
-            <textarea formControlName="justificativa" id="justificativa" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a justificativa do projeto..."></textarea>
+            <textarea formControlName="justificativa" id="justificativa" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a justificativa do projeto..."></textarea>
           </div>
     
           <div class="mb-5">
             <label for="objetivoGeral" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivo geral:<span class="text-red-700">*</span></label>
-            <textarea formControlName="objetivoGeral" id="objetivoGeral" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o objetivo geral do projeto..."></textarea>
+            <textarea formControlName="objetivoGeral" id="objetivoGeral" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o objetivo geral do projeto..."></textarea>
           </div>
           <div class="mb-5">
             <label for="objetivoEspecifico" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivos específicos:<span class="text-red-700">*</span></label>
-            <textarea formControlName="objetivoEspecifico" id="objetivoEspecifico" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe os objetivos específicos do projeto..."></textarea>
+            <textarea formControlName="objetivoEspecifico" id="objetivoEspecifico" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe os objetivos específicos do projeto..."></textarea>
           </div>
         
           <div class="flex items-center">
@@ -153,34 +145,25 @@
           </div>
         </div>
       } @else if (formPage == 3) {
-        <div class="form-page-2 w-full transition-all">
+        <div class="form-page-2 w-full transition-all flex flex-col gap-4">
           <div class="relative">
             <label for="metodologia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metodologia:<span class="text-red-700">*</span></label>
-            <input type="text" id="metodologia" formControlName="metodologia" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a metodologia do projeto" required />
-            <button type="button" (click)="addMethodology()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir</button>
-          </div>
-
-          <div class="flex items-center gap-4 flex-wrap">
-            @for (methodology of listMethodology; track $index) {
-              <p class="p-4 font-medium">{{methodology}}</p>
-            }
+            <textarea formControlName="metodologia" id="metodologia" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a metodologia" required></textarea>
           </div>
 
           <div class="relative">
             <label for="cronogramaDeAtividade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cronograma de atividades:<span class="text-red-700">*</span></label>
-            <input type="text" id="cronogramaDeAtividade" formControlName="cronogramaDeAtividade" class="w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira atividades do cronograma" required />
-            <button type="button" (click)="addTimeline()" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inserir</button>
-          </div>
-
-          <div class="w-full flex items-center gap-4 flex-wrap">
-            @for (timeline of listTimeline; track $index) {
-              <p class="p-4 font-medium flex-1">{{timeline}}</p>
-            }
+            <textarea formControlName="cronogramaDeAtividade" id="cronogramaDeAtividade" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira o cronograma de atividades" required></textarea>
           </div>
 
           <div class="mb-5">
             <label for="referencias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referências:<span class="text-red-700">*</span></label>
-            <textarea formControlName="referencias" id="referencias" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira as referências"></textarea>
+            <textarea formControlName="referencias" id="referencias" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira as referências"></textarea>
+          </div>
+
+          <div class="mb-5">
+            <label for="vagas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vagas:<span class="text-red-700">*</span></label>
+            <input type="number" formControlName="vagas" id="vagas" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a quantidade de vagas"/>
           </div>
 
           <div class="flex items-start mb-5">

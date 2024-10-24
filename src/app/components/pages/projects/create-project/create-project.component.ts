@@ -26,10 +26,6 @@ export class CreateProjectComponent {
   selectedFile: File | null = null;
   formPage: number = 1;
 
-  listKeywords: string[] = [];
-  listMethodology: string[] = [];
-  listTimeline: string[] = [];
-
   form: FormGroup = this.formBuilderService.group({
     titulo: ['', [Validators.required, Validators.minLength(5)]],
     titulacao: ['', [Validators.required, Validators.minLength(5)]],
@@ -37,16 +33,17 @@ export class CreateProjectComponent {
     curso: ['', [Validators.required]],
     linhaDePesquisa: ['', [Validators.required, Validators.minLength(5)]],
     descricao: ['', [Validators.required, Validators.minLength(5)]],
-    palavrasChave: [[]],
+    palavrasChave: ['', [Validators.required, Validators.minLength(5)]],
     localizacao: ['', [Validators.required]],
     populacao: ['', [Validators.required]],
     justificativa: ['', [Validators.required]],
     objetivoGeral: ['', [Validators.required]],
-    objetivoEspecifico: [[]],
+    objetivoEspecifico: ['', [Validators.required]],
     metodologia: ['', [Validators.required]],
-    cronogramaDeAtividade: [[]],
+    cronogramaDeAtividade: ['', [Validators.required]],
     referencias: ['', [Validators.required]],
     termos: [false, [Validators.required]],
+    vagas: [null, [Validators.required]]
   })
 
   nextPage() {
@@ -57,42 +54,21 @@ export class CreateProjectComponent {
     this.formPage--;
   }
 
-  addKeyword() {
-    const wordControl = this.form.get('palavrasChave');
-    const word: string = wordControl ? wordControl.value : '';
+  // addKeyword() {
+  //   const wordControl = this.form.get('palavrasChave');
+  //   const word: string = wordControl ? wordControl.value : '';
 
-    this.listKeywords.push(word);
-    wordControl?.setValue('');
-  }
-
-
-  addMethodology() {
-    const methodologyControl = this.form.get('metodologia');
-    const methodology: string = methodologyControl ? methodologyControl.value : '';
-
-    this.listMethodology.push(methodology);
-    methodologyControl?.setValue('');
-  }
-
-  addTimeline() {
-    const timelineControl = this.form.get('cronogramaDeAtividade');
-    const timeline: string = timelineControl ? timelineControl.value : '';
-
-    this.listTimeline.push(timeline);
-    timelineControl?.setValue('');
-  }
+  //   this.listKeywords.push(word);
+  //   wordControl?.setValue('');
+  // }
 
   createProject() {
 
-    const wordControl = this.form.get('palavrasChave');
-    const methodologyControl = this.form.get('metodologia');
-    const timelineControl = this.form.get('cronogramaDeAtividade');
-    
-    wordControl?.setValue(this.listKeywords);
-    methodologyControl?.setValue(this.listMethodology);
-    timelineControl?.setValue(this.listTimeline);
+    // const wordControl = this.form.get('palavrasChave');
+    // wordControl?.setValue(this.listKeywords);
 
     if (this.form.valid) {
+      console.log(this.form)
       this.projectService.createProject(this.form.value).subscribe(
         () => {
           this.toast.success('Projeto criado com sucesso!');

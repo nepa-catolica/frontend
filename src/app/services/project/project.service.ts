@@ -18,4 +18,16 @@ export class ProjectService {
   getAllApprovedProjects() {
     return this.http.get<IProject[]>('api/projetos/api/listar/projetos_aprovados').pipe(take(1));
   }
+
+  getAllOutstandingProjects() {
+    return this.http.get<IProject[]>('api/projetos/api/listar/projetos_pendentes').pipe(take(1));
+  }
+
+  approveProjects(projectId: number) {
+    return this.http.post(`/api/admin/api/aprovar/projeto/${projectId}`, null).pipe(take(1));
+  }
+
+  failProjects(projectId: number) {
+    return this.http.post(`/api/admin/api/rejeitar/projeto/${projectId}`, null).pipe(take(1));
+  }
 }

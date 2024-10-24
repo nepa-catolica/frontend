@@ -35,6 +35,9 @@
             <li *ngIf="subToken!.role != 'aluno'">
               <a routerLink="/criar-projeto" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Cadastrar projeto</a>
             </li>
+            <li>
+              <a routerLink="/projetos-pendentes" class="flex items-center w-full p-2 text-gray-900 text-left transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Ver projetos pendentes</a>
+            </li>
           </ul>
         </li>
         <li *ngIf="subToken!.role == 'Admin'">

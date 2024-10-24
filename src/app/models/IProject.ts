@@ -3,8 +3,25 @@ import { IUser } from "./IUser";
 
 export interface IProject {
   id: number;
-  nome: string;
+  titulo: string;
   descricao: string,
-  alunos_cadastrados: IUser[],
+  vagas: number;
+  titulacao: string,
+  curso: string,
+  linhaDePesquisa: string,
+  situacao: string,
+  palavrasChave: string[],
+  localizacao: string,
+  populacao: string,
+  justificativa: string,
+  objetivoGeral: string,
+  objetivoEspecifico: string,
+  metodologia: string,
+  cronogramaDeAtividade: string,
+  referencias: string,
+  termos: boolean,
+  data_criacao: Date,
+  data_limite_edicao: Date,
+  aprovado: boolean,
   professor: ITeacher,
 }
