@@ -42,7 +42,7 @@ export class OutstandingProjectsComponent implements OnInit {
   reproveProject(id: number) {
     this.projectService.failProjects(id).pipe(
       switchMap(() => {
-        this.toast.error("Professor rejeitado!");
+        this.toast.error("Projeto rejeitado!");
         return this.projectService.getAllOutstandingProjects();
       })
     ).subscribe((projects) => {

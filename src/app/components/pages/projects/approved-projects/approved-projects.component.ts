@@ -20,6 +20,7 @@ export class ApprovedProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects$ = this.projectService.getAllApprovedProjects();
+    this.projects$.subscribe(p => console.log(p))
   }
 
   filterProjects() {

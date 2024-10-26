@@ -1,28 +1,24 @@
+import { IProject } from '@//app/models/IProject';
+import { ProjectService } from '@//app/services/project/project.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProjectService } from '@/services/project/project.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
-
-interface content {
-  id: string;
-  message: string;
-}
 
 @Component({
-  selector: 'app-create-project',
+  selector: 'app-edit-project',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './create-project.component.html',
-  styleUrl: './create-project.component.css'
+  templateUrl: './edit-project.component.html',
+  styleUrl: './edit-project.component.css'
 })
-export class CreateProjectComponent {
-
+export class EditProjectComponent implements OnInit {
   projectService = inject(ProjectService);
   formBuilderService = inject(NonNullableFormBuilder);
   toast = inject(ToastrService);
   router = inject(Router);
+  route = inject(ActivatedRoute);
   formPage: number = 1;
 
   form: FormGroup = this.formBuilderService.group({
@@ -44,6 +40,18 @@ export class CreateProjectComponent {
     termos: [false, [Validators.required]],
     vagas: [null, [Validators.required]]
   })
+  
+  ngOnInit(): void {
+    this.getProject();
+  }
+
+  getProject() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.projectService.getProjetoById(id).subscribe((project: IProject) => {
+      this.form.patchValue({...project})
+    });
+  }
 
   nextPage() {
     this.formPage++;
@@ -53,11 +61,14 @@ export class CreateProjectComponent {
     this.formPage--;
   }
 
-  createProject() {
+  editProject() {
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
     if (this.form.valid) {
-      this.projectService.createProject(this.form.value).subscribe(
+      this.projectService.editProject(id, this.form.value).subscribe(
         () => {
-          this.toast.success('Projeto criado com sucesso!');
+          this.toast.success('Projeto editado com sucesso!');
           this.router.navigate(['/home']);
         },
         (error) => this.toast.error(`${error.error.message}`)

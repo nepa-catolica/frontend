@@ -10,7 +10,7 @@ export interface IProject {
   curso: string,
   linhaDePesquisa: string,
   situacao: string,
-  palavrasChave: string[],
+  palavrasChave: string,
   localizacao: string,
   populacao: string,
   justificativa: string,

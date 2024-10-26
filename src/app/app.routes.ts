@@ -24,7 +24,7 @@ export const routes: Routes = [
   {
     path: 'criar-projeto',
     canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['Admin', 'professor']},
+    data: {roles: ['professor']},
     loadComponent: () => import('./components/pages/projects/create-project/create-project.component').then((c) => c.CreateProjectComponent)
   },
   {
@@ -50,5 +50,11 @@ export const routes: Routes = [
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin']},
     loadComponent: () => import('./components/pages/projects/outstanding-projects/outstanding-projects.component').then((c) => c.OutstandingProjectsComponent)
+  },
+  {
+    path: 'editar-projeto/:id',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['professor']},
+    loadComponent: () => import('./components/pages/projects/edit-project/edit-project.component').then((c) => c.EditProjectComponent)
   }
 ];

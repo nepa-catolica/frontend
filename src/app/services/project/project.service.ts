@@ -15,6 +15,10 @@ export class ProjectService {
     return this.http.post('api/projetos/api/create', project).pipe(take(1));
   }
 
+  getProjetoById(projectId: number) {
+    return this.http.get<IProject>(`api/projetos/api/listar/projeto/${projectId}`).pipe(take(1));
+  }
+
   getAllApprovedProjects() {
     return this.http.get<IProject[]>('api/projetos/api/listar/projetos_aprovados').pipe(take(1));
   }
@@ -29,5 +33,9 @@ export class ProjectService {
 
   failProjects(projectId: number) {
     return this.http.post(`/api/admin/api/rejeitar/projeto/${projectId}`, null).pipe(take(1));
+  }
+
+  editProject(id: number, project: FormGroup) {
+    return this.http.put(`api/projetos/api/editar/projeto/${id}`, project).pipe(take(1));
   }
 }
