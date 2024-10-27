@@ -1,64 +1,182 @@
-<div class="relative flex flex-col items-center justify-center h-full">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
+<div class="relative flex flex-col items-center justify-center h-full" [ngClass]="isActive ? 'bg-gray-800 opacity-50' : ''">
+    @if(!isActive) {
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
 
-  <div class="relative overflow-x-auto drop-shadow-2xl sm:rounded-lg">
-      <div class="flex items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
-          <label for="table-search-users" class="sr-only">Search</label>
-          <div class="relative">
-              <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                  </svg>
-              </div>
-              <input type="text" id="table-search-users" [(ngModel)]="filter" (input)="filterProjects()" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar projetos">
-          </div>
-      </div>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                  <th scope="col" class="p-4">
-                      ID
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      Nome do projeto
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      Descrição
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      Professor responsável
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                      Vagas
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Ações
-                </th>
-              </tr>
-          </thead>
-          <tbody *ngFor="let project of projects$ | async">
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td class="w-4 p-4">
-                      {{project.id}}
-                  </td>
-                  <td class="px-6 py-4">
-                      {{project.titulo}}
-                  </td>
-                  <td class="px-6 py-4">
-                      {{project.descricao}}
-                  </td>
-                  <td class="px-6 py-4">
-                      {{project.professor.nome}}
-                  </td>
-                  <td class="px-6 py-4">
-                    {{project.vagas}}
-                  </td>
-                  <td class="flex items-center gap-4 px-6 py-4">
-                    <button type="button" (click)="approveProject(project.id)" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Aprovar</button>
-                    <button type="button" (click)="reproveProject(project.id)" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Reprovar</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+    }
+    <div class="relative overflow-x-auto drop-shadow-2xl sm:rounded-lg">
+        <div class="flex items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+            <label for="table-search-users" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="text" id="table-search-users" [(ngModel)]="filter" (input)="filterProjects()" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar projetos">
+            </div>
+        </div>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="p-4">
+                        ID
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Nome do projeto
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Descrição
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Professor responsável
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Vagas
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Analisar projeto
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Aprovar projeto
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Reprovar projeto
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let project of projects$ | async">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="w-4 p-4">
+                        {{project.id}}
+                    </td>
+                    <td class="px-6 py-4 truncate max-w-[250px]">
+                        {{project.titulo}}
+                    </td>
+                    <td class="px-6 py-4 truncate max-w-[250px]">
+                        {{project.descricao}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{project.professor.nome}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{project.vagas}}
+                    </td>
+                    <td align="center" class="px-6 py-4">
+                        <button type="button" (click)="toggleModal(project)" class="block text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                            </svg>
+                        </button>
+                    </td>
+                    <td align="center" class="px-6 py-4">
+                        <button type="button" (click)="approveProject(project.id)" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                        </button>
+                    </td>
+                    <td align="center" class="px-6 py-4">
+                        <button type="button" (click)="reproveProject(project.id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
+
+@if (isActive) {
+    <div id="large-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0">
+        <div class="relative left-1/2 -translate-x-1/2 p-4 w-full max-w-3xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-2 border-b rounded-t dark:border-gray-600">
+                    <button type="button" (click)="toggleModal()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div id="pdf" #content class="tracking-widest p-2">
+                    <picture class="flex items-center justify-center gap-4 m-4">
+                        <img src="/assets/logo-catolica.png" height="80" width="80" alt="Logo da Faculdade Católica da Paraíba">
+                        <img src="/assets/logo-full-nepa.png" height="80" width="200" alt="Logo do NEPA">
+                    </picture>
+                    <div class="text-center text-pretty border border-black p-2">
+                        <h2>FACULDADE CATÓLICA DA PARAÍBA</h2>
+                        <h3>Instituição Mantida pela Fundação de Ensino Superior de Cajazeiras</h3>
+                    </div>
+                    <div class="text-center text-pretty  border border-black p-2">
+                        <h2>NÚCLEO DE EXTENSÃO E PESQUISA ACADÊMICA – NEPA <br> PROPOSTA DE PROJETO DE EXTENSÃO <br> EDITAL N.º 01/2024</h2>
+                    </div>
+                    <div class="text-starttext-pretty  border border-black p-2">
+                        <strong> - Documentos indispensáveis para inscrição:</strong>
+                        <p>
+                            <small>1 (uma) cópia por e-mail do Formulário de <strong>Proposta de Projeto de Extensão</strong></small>
+                        </p>
+                        <p>
+                            <small>1(uma) cópia por e-mail do Currículo Lattes atualizado.</small>
+                        </p>
+                    </div>
+                    <div class="border text-pretty  border-black p-2">
+                        <p>1. Nome do(a) professor(a) proponete do Projeto: {{projectSelected?.professor?.nome}}</p>
+                        <p>2. Titulação do Professor Proponente:  {{projectSelected?.titulacao}}</p>
+                        <p>2.1 Telefones para contato: {{projectSelected?.professor?.email}}</p>
+                        <p>2.2 E-mail: {{projectSelected?.professor?.nome}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Curso: {{projectSelected?.curso}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Título do Projeto: {{projectSelected?.titulo}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Linha de Pesquisa: {{projectSelected?.linhaDePesquisa}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Situação do projeto: {{projectSelected?.situacao}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Palavras chaves: {{projectSelected?.palavrasChave}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Localização: {{projectSelected?.localizacao}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>População: {{projectSelected?.populacao}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Justifcativa: {{projectSelected?.justificativa}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Objetivo geral: {{projectSelected?.objetivoGeral}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Objetivos específicos: {{projectSelected?.objetivoEspecifico}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Metodologia: {{projectSelected?.metodologia}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Cronograma de atividades: {{projectSelected?.cronogramaDeAtividade}}</p>
+                    </div>
+                    <div class="text-pretty border border-black p-2">
+                        <p>Referências: {{projectSelected?.cronogramaDeAtividade}}</p>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center gap-4 p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button (click)="printPDF(projectSelected!.id)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Baixar PDF</button>
+                    <button (click)="toggleModal()" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
