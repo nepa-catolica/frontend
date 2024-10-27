@@ -20,14 +20,18 @@ export class LoginService {
   login(user: FormGroup) {
     return this.http.post<IAuth>(`/api/auth/api/login`, user).pipe(
       tap(res => {
+        if (res.access_token.msg === "Credenciais inválidas") {
+          this.toast.error('Usuário e/ou senha incorretos!');
+        }
         if (res && res.access_token && res.access_token.access_token) {
           this.toast.success('Login realizado com sucesso!')
           localStorage.setItem('token', res.access_token.access_token);
         }
       }),
       catchError((error: HttpErrorResponse) => {
+        console.log(error)
         if (error.status === 401) {
-          if (error.error.error === "Invalid credentials") {
+          if (error.error.msg === "Credenciais inválidas") {
             this.toast.error('Usuário e/ou senha incorretos!');
           } else {
             this.toast.error('Falha no login: usuário não foi aprovado!');

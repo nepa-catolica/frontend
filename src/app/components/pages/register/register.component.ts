@@ -28,7 +28,7 @@ export class RegisterComponent {
     matricula: ['', [Validators.required, Validators.minLength(6)]],
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
     confirmPassword: ['', Validators.required],
     role: ['', [Validators.required]]
   }, {validators: passwordMatchValidator});

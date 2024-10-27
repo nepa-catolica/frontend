@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
 import { IProject } from '@/models/IProject';
+import { IUser } from '../../models/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,9 @@ export class ProjectService {
   editProject(id: number, project: FormGroup) {
     return this.http.put(`api/projetos/api/editar/projeto/${id}`, project).pipe(take(1));
   }
+
+  studentRegistrationInTheProject(idProject: number) {
+    return this.http.post(`api/projetos/api/register/aluno_projeto/${idProject}`, null).pipe(take(1));
+  }
+
 }

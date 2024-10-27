@@ -29,8 +29,7 @@ export const routes: Routes = [
   },
   {
     path: 'projetos-aprovados',
-    canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['Admin', 'professor']},
+    canActivate: [authGuard],
     loadComponent: () => import('./components/pages/projects/approved-projects/approved-projects.component').then((c) => c.ApprovedProjectsComponent)
   },
   {
