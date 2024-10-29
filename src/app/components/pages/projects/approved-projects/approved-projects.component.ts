@@ -27,45 +27,62 @@ export class ApprovedProjectsComponent implements OnInit {
   public subToken: ISubToken | null = null;
   public isActive: boolean = false;
   public projectSelected?: IProject;
+  public studentSituationInTheProject: string = "";
 
   @ViewChild('content', {static: false}) el!: ElementRef;
   ngOnInit(): void {
-    this.projects$ = this.projectService.getAllApprovedProjects();
+    this.getProjects();
     this.subToken = this.loginService.decodeToken();
   }
 
-  // printPDF(id: number) {
-  //   this.projectService.getProjetoById(id).subscribe(project => {
-  //     const element = this.el.nativeElement;
+  printPDF(id: number) {
+    this.projectService.getProjectById(id).subscribe(project => {
+      const element = this.el.nativeElement;
   
-  //     html2canvas(element).then(canvas => {
-  //       const doc = new jsPDF('p', 'pt', 'a4', true);
-  //       const imgData = canvas.toDataURL('image/png');
-  //       const a4Width = 595;
-  //       const a4Height = 842;
-  //       const imgWidth = a4Width;
-  //       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  //       let heightLeft = imgHeight;
-  //       let position = 0;
+      html2canvas(element).then(canvas => {
+        const doc = new jsPDF('p', 'pt', 'a4', true);
+        const imgData = canvas.toDataURL('image/png');
+        const a4Width = 595;
+        const a4Height = 842;
+        const imgWidth = a4Width;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
   
-  //       doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-  //       heightLeft -= a4Height; 
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= a4Height; 
   
-  //       while (heightLeft >= 0) {
-  //         position = heightLeft - imgHeight;
-  //         doc.addPage();
-  //         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-  //         heightLeft -= a4Height;
-  //       }
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          doc.addPage();
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= a4Height;
+        }
   
-  //       doc.save(`${project.titulo}.pdf`);
-  //     });
-  //   });
-  // }
+        doc.save(`${project.titulo}.pdf`);
+      });
+    });
+  }
+
+  getProjects() {
+    this.projects$ = this.projectService.getAllApprovedProjects();
+    this.projects$.subscribe((projects: any[]) => {
+      projects.forEach((students_in_project: any) => {
+        students_in_project.alunos_cadastrados.forEach((student: any) => {
+          console.log(student.aprovado)
+          if (student.aprovado) {
+            this.studentSituationInTheProject = "Aprovado";
+          } else {
+            this.studentSituationInTheProject = "Aguardando aprovação";
+            return;
+          }
+        })
+      })
+    })
+  }
 
   toggleModal(project?: IProject) {
     this.projectSelected = project;
-    console.log(this.projectSelected)
     this.isActive = !this.isActive;
   }
 
@@ -77,8 +94,8 @@ export class ApprovedProjectsComponent implements OnInit {
       catchError((error) => {
         this.toast.error("Não foi possível realizar a inscrição no projeto!");
         return of({success: false, error});
-      }),
-    )
+      })
+    ).subscribe(() => this.getProjects());
   }
 
   filterProjects() {

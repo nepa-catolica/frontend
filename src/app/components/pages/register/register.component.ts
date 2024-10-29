@@ -34,8 +34,6 @@ export class RegisterComponent {
   }, {validators: passwordMatchValidator});
 
   register() {
-    console.log(this.form)
-    console.log(this.form.get('password')?.errors)
     if (this.form.valid) {
       const { confirmPassword, ...formData } = this.form.value;
       this.toast.success("Usuário criado com sucesso!");

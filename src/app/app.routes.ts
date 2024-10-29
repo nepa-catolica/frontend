@@ -55,5 +55,18 @@ export const routes: Routes = [
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['professor']},
     loadComponent: () => import('./components/pages/projects/edit-project/edit-project.component').then((c) => c.EditProjectComponent)
+  },
+  {
+    path: 'alunos-inscritos-projeto/:id',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['professor']},
+    loadComponent: () => import('./components/pages/projects/students-in-project/students-in-project.component').then((c) => c.StudentsInProjectComponent)
+  },
+  {
+    path: 'publicar-edital',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin']},
+    loadComponent: () => import('./components/pages/notice/publish-notice/publish-notice.component').then((c) => c.PublishNoticeComponent)
   }
+
 ];

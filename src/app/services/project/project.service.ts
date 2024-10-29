@@ -16,7 +16,7 @@ export class ProjectService {
     return this.http.post('api/projetos/api/create', project).pipe(take(1));
   }
 
-  getProjetoById(projectId: number) {
+  getProjectById(projectId: number) {
     return this.http.get<IProject>(`api/projetos/api/listar/projeto/${projectId}`).pipe(take(1));
   }
 
@@ -42,6 +42,18 @@ export class ProjectService {
 
   studentRegistrationInTheProject(idProject: number) {
     return this.http.post(`api/projetos/api/register/aluno_projeto/${idProject}`, null).pipe(take(1));
+  }
+
+  getAllStudentsRegisteredInTheProject(idProject: number) {
+    return this.http.get<IUser[]>(`api/projetos/api/projeto/${idProject}/alunos`).pipe(take(1));1
+  }
+
+  approveStudentInProject(idProject: number, idStudent: number) {
+    return this.http.post(`api/projetos/api/aprovar/${idProject}/aluno/${idStudent}`, null).pipe(take(1));
+  }
+
+  reproveStudentInProject(idProject:number, idStudent: number) {
+    return this.http.post(`api/projetos/api/projeto/${idProject}/aluno/${idStudent}/rejeitar`, null).pipe(take(1));
   }
 
 }

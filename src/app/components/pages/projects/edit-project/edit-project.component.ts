@@ -48,7 +48,7 @@ export class EditProjectComponent implements OnInit {
   getProject() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.projectService.getProjetoById(id).subscribe((project: IProject) => {
+    this.projectService.getProjectById(id).subscribe((project: IProject) => {
       this.form.patchValue({...project})
     });
   }

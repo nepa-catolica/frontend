@@ -1,0 +1,81 @@
+<div class="relative flex flex-col items-center justify-center h-full">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
+
+  <div class="relative overflow-x-auto drop-shadow-2xl sm:rounded-lg">
+      <div class="flex items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+          <label for="table-search-users" class="sr-only">Search</label>
+          <div class="relative">
+              <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <input type="text" id="table-search-users" [(ngModel)]="filter" (input)="filterStudents()" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar projetos">
+          </div>
+      </div>
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                  <th scope="col" class="p-4">
+                      ID
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Nome
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Matrícula
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Curso
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Status
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Aprovar aluno
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                      Reprovar aluno
+                  </th>
+              </tr>
+          </thead>
+          <tbody *ngFor="let student of students">
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td class="w-4 p-4">
+                      {{student.aluno_id}}
+                  </td>
+                  <td class="px-6 py-4 truncate max-w-[250px]">
+                      {{student.nome}}
+                  </td>
+                  <td class="px-6 py-4 truncate max-w-[250px]">
+                      {{student.matricula}}
+                  </td>
+                  <td class="px-6 py-4">
+                      {{student.curso}}
+                  </td>
+                  <td class="px-6 py-4">
+                    @if (student.aprovado) {
+                        Aprovado
+                    } @else {
+                        Reprovado
+                    }
+                  </td>
+                  <td align="center" class="px-6 py-4">
+                      <button type="button" (click)="approveStudent(student.aluno_id)" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                          </svg>
+                      </button>
+                  </td>
+                  <td align="center" class="px-6 py-4">
+                      <button type="button" (click)="reproveStudent(student.aluno_id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                          </svg>
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

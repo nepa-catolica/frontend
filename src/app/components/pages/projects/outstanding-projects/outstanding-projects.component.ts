@@ -6,12 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
-import { TemplatePdfComponent } from '../../../template-pdf/template-pdf.component';
 import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-outstanding-projects',
   standalone: true,
-  imports: [NgFor, CommonModule, FormsModule, TemplatePdfComponent],
+  imports: [NgFor, CommonModule, FormsModule],
   templateUrl: './outstanding-projects.component.html',
   styleUrl: './outstanding-projects.component.css'
 })
@@ -31,7 +30,7 @@ export class OutstandingProjectsComponent implements OnInit {
   }
 
   printPDF(id: number) {
-    this.projectService.getProjetoById(id).subscribe(project => {
+    this.projectService.getProjectById(id).subscribe(project => {
       const element = this.el.nativeElement;
   
       html2canvas(element).then(canvas => {
@@ -58,7 +57,6 @@ export class OutstandingProjectsComponent implements OnInit {
       });
     });
   }
-  
 
   approveProject(id: number) {
     this.projectService.approveProjects(id).pipe(

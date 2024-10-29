@@ -43,7 +43,7 @@ export class CreateProjectComponent {
     referencias: ['', [Validators.required]],
     termos: [false, [Validators.required]],
     vagas: [null, [Validators.required]]
-  })
+  });
 
   nextPage() {
     this.formPage++;

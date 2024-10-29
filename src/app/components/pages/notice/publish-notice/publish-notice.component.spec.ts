@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplatePdfComponent } from './template-pdf.component';
+import { PublishNoticeComponent } from './publish-notice.component';
 
-describe('TemplatePdfComponent', () => {
-  let component: TemplatePdfComponent;
-  let fixture: ComponentFixture<TemplatePdfComponent>;
+describe('PublishNoticeComponent', () => {
+  let component: PublishNoticeComponent;
+  let fixture: ComponentFixture<PublishNoticeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TemplatePdfComponent]
+      imports: [PublishNoticeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TemplatePdfComponent);
+    fixture = TestBed.createComponent(PublishNoticeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
