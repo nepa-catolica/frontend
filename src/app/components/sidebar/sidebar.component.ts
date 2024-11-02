@@ -2,14 +2,14 @@ import { AfterViewInit, ChangeDetectorRef, Component, inject, OnInit } from '@an
 import { Router, RouterLink } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { ToastrService } from 'ngx-toastr';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { ISubToken } from '@/models/ISubToken';
 import { LoginService } from "@/services/login/login.service"
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgIf, NgClass],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -40,5 +40,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   private initializeFlowbite() {
     initFlowbite();
+  }
+
+  isRouteActive(url: string) {
+    return this.router.url === url;
   }
 }
