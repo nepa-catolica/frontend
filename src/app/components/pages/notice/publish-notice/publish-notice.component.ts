@@ -37,6 +37,8 @@ export class PublishNoticeComponent {
   }
 
   publishNotice() {
+    console.log(this.form)
+
     if (this.form.valid && this.selectedFile) {
       this.noticeService.publishNotice(this.form.value).subscribe(
         () => {
