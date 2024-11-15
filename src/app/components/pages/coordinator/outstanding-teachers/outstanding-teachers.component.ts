@@ -5,11 +5,12 @@ import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { ITeacher } from '@/models/ITeacher';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-outstanding-teachers',
   standalone: true,
-  imports: [CommonModule, NgFor],
+  imports: [CommonModule, FormsModule,NgFor],
   templateUrl: './outstanding-teachers.component.html',
   styleUrl: './outstanding-teachers.component.css'
 })

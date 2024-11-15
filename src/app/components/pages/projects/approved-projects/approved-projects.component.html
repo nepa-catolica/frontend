@@ -57,7 +57,7 @@
                 }
                 </tr>
             </thead>
-            <tbody *ngFor="let project of projects$ | async">
+            <tbody *ngFor="let project of filteredProjects">
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="w-4 p-4">
                         {{project.id}}
@@ -69,7 +69,7 @@
                         {{project.descricao}}
                     </td>
                     <td class="px-6 py-4">
-                        {{project.professor}}
+                        {{project.professor.nome}}
                     </td>
                     <td class="px-6 py-4">
                         {{project.vagas}}
@@ -118,30 +118,30 @@
                                 </svg>
                             </button>
                         </td>
-                        <td align="center" class="px-6 py-4">
-                            @if(studentSituationInTheProject != "") {
-                                @if(studentSituationInTheProject == "Aprovado") {
-                                    <button type="button" (click)="registerInTheProject(project.id)" class="flex items-center justify-center gap-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 cursor-not-allowed" disabled>
-                                        {{studentSituationInTheProject}}
+                        <td class="px-6 py-4">
+                            @for (student of project.alunos_cadastrados; track $index) {
+                                @if(!student.aprovado && subToken?.email == student.email) {
+                                    <button type="button" (click)="registerInTheProject(project.id)" class="flex items-center justify-center gap-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 cursor-not-allowed" disabled>
+                                        Aguardando aprovação
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                             <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
-                                } @else if (studentSituationInTheProject == "Aguardando aprovação") {
-                                    <button type="button" class="flex items-center justify-center gap-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900 cursor-not-allowed" disabled>
-                                        {{studentSituationInTheProject}}
+                                } @else if (student.aprovado && subToken?.email == student.email) {
+                                    <button type="button" class="  flex items-center justify-center gap-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 cursor-not-allowed" disabled>
+                                        Aprovado
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                            <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                } @else {
+                                    <button type="button" (click)="registerInTheProject(project.id)" class="flex items-center justify-center gap-2 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+                                        Inscrever-se
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                             <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                 }
-                            }@else {
-                                <button type="button" (click)="registerInTheProject(project.id)" class="flex items-center justify-center gap-2 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
-                                    Inscrever-se
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-                                        <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
                             }
                         </td>
                     }
@@ -179,7 +179,7 @@
                         <h2>NÚCLEO DE EXTENSÃO E PESQUISA ACADÊMICA – NEPA <br> PROPOSTA DE PROJETO DE EXTENSÃO <br> EDITAL N.º 01/2024</h2>
                     </div>
                     <div class="border text-pretty  border-black p-2">
-                        <p>1. Nome do(a) professor(a) proponete do Projeto: {{projectSelected?.professor}}</p>
+                        <p>1. Nome do(a) professor(a) proponete do Projeto: {{projectSelected?.professor?.nome}}</p>
                     </div>
                     <div class="text-pretty border border-black p-2">
                         <p>Título do Projeto: {{projectSelected?.titulo}}</p>

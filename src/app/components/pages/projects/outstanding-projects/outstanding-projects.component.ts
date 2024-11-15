@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ISubToken } from '@//app/models/ISubToken';
+import { LoginService } from '@//app/services/login/login.service';
 @Component({
   selector: 'app-outstanding-projects',
   standalone: true,
@@ -16,16 +18,19 @@ import html2canvas from 'html2canvas';
 })
 export class OutstandingProjectsComponent implements OnInit {
   private projectService = inject(ProjectService);
+  private loginService = inject(LoginService);
   private toast = inject(ToastrService);
 
   public projects$: Observable<IProject[]> = new Observable<IProject[]>();
   public filter: string = "";
   public isActive: boolean = false;
   public projectSelected?: IProject;
+  public subToken: ISubToken | null = null;
 
   @ViewChild('content', {static: false}) el!: ElementRef;
 
   ngOnInit(): void {
+    this.subToken = this.loginService.decodeToken();
     this.projects$ = this.projectService.getAllOutstandingProjects();
   }
 

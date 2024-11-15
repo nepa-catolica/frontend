@@ -22,7 +22,8 @@ export class ApprovedProjectsComponent implements OnInit {
   private loginService = inject(LoginService);
   private toast = inject(ToastrService);
 
-  public projects$: Observable<IProject[]> = new Observable<IProject[]>();
+  private projects$: Observable<any[]> = new Observable<IProject[]>();
+  public filteredProjects: any[] = [];
   public filter: string = "";
   public subToken: ISubToken | null = null;
   public isActive: boolean = false;
@@ -33,6 +34,13 @@ export class ApprovedProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.getProjects();
     this.subToken = this.loginService.decodeToken();
+    this.projects$.subscribe((projects: IProject[]) => {
+      if (this.subToken?.role != "professor") {
+        this.filteredProjects = projects;
+      } else {
+        this.filteredProjects = projects.filter(project => project.professor.email === this.subToken?.email);
+      }
+    });
   }
 
   printPDF(id: number) {
@@ -66,19 +74,7 @@ export class ApprovedProjectsComponent implements OnInit {
 
   getProjects() {
     this.projects$ = this.projectService.getAllApprovedProjects();
-    this.projects$.subscribe((projects: any[]) => {
-      projects.forEach((students_in_project: any) => {
-        students_in_project.alunos_cadastrados.forEach((student: any) => {
-          console.log(student.aprovado)
-          if (student.aprovado) {
-            this.studentSituationInTheProject = "Aprovado";
-          } else {
-            this.studentSituationInTheProject = "Aguardando aprovação";
-            return;
-          }
-        })
-      })
-    })
+    this.projects$.subscribe(projects => this.filteredProjects = projects);
   }
 
   toggleModal(project?: IProject) {
@@ -89,7 +85,7 @@ export class ApprovedProjectsComponent implements OnInit {
   registerInTheProject(id: number) {
     this.projectService.studentRegistrationInTheProject(id).pipe(
       tap(res => {
-        this.toast.success("Inscrição realizada com sucesso!")
+        this.toast.success("Inscrição realizada com sucesso!");
       }),
       catchError((error) => {
         this.toast.error("Não foi possível realizar a inscrição no projeto!");
@@ -102,9 +98,12 @@ export class ApprovedProjectsComponent implements OnInit {
     this.projects$ = this.projectService.getAllApprovedProjects().pipe(
       map(
         (projects: IProject[]) => projects.filter(
-          (project: IProject) => project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+          (project: IProject) => {
+            project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase());
+          }
         )
       )
     )
+    this.projects$.subscribe(projects => this.filteredProjects = projects)
   }
 }
