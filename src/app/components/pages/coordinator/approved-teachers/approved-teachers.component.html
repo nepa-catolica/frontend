@@ -1,10 +1,10 @@
-<div class="relative flex flex-col items-center justify-center h-full">
+<div class="relative flex flex-col items-center justify-center h-full w-full overflow-hidden">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
 
     <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Professores aprovados</h1>
 
-    <div class="relative overflow-x-auto drop-shadow-2xl sm:rounded-lg">
-        <div class="flex items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+    <div class="relative drop-shadow-2xl w-full sm:rounded-lg xl:w-1/2  overflow-auto">
+        <div class="flex items-center justify-center md:justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
             <label for="table-search-users" class="sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -18,41 +18,54 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="p-4">
+                    <th scope="col" class="p-4 hidden md:table-cell">
                         ID
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="flex-1 px-6 py-3 md:hidden">
+                        Usuário
+                    </th>
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Nome
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Email
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Curso
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 hidden md:table-cell">
                         Matrícula
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="flex-1 px-6 py-3 md:table-cell">
                         Remover
                     </th>
                 </tr>
             </thead>
             <tbody *ngFor="let teacher of teachers$ | async">
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td class="w-4 p-4">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
+                    <td class="hidden md:table-cell px-6 py-4">
                         {{teacher.id}}
                     </td>
-                    <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                        <div class="text-base font-semibold">{{teacher.nome}}</div>
-                    </th>
                     <td class="px-6 py-4">
+                        <!-- Nome e email juntos para telas menores -->
+                        <div class="block md:hidden">
+                            <div class="text-base font-semibold">{{teacher.nome}}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">{{teacher.email}}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400"><strong>Matrícula:</strong> {{teacher.matricula}}</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400"><strong>Curso:</strong> {{teacher.curso}}</div>
+                        </div>
+                        
+                        <!-- Nome separado para telas maiores -->
+                        <div class="hidden md:block text-base font-semibold">{{teacher.nome}}</div>
+                    </td>
+                    <td class="hidden md:table-cell px-6 py-4">
+                        <!-- Email visível apenas em telas maiores -->
                         {{teacher.email}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="hidden md:table-cell px-6 py-4">
                         {{teacher.curso}}
                     </td>
-                    <td class="px-6 py-4">
+                    <td class="hidden md:table-cell px-6 py-4">
                         {{teacher.matricula}}
                     </td>
                     <td align="center" class="px-6 py-4">

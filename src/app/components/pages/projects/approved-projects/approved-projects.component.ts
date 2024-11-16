@@ -37,6 +37,7 @@ export class ApprovedProjectsComponent implements OnInit {
     this.projects$.subscribe((projects: IProject[]) => {
       if (this.subToken?.role != "professor") {
         this.filteredProjects = projects;
+        console.log(projects)
       } else {
         this.filteredProjects = projects.filter(project => project.professor.email === this.subToken?.email);
       }
