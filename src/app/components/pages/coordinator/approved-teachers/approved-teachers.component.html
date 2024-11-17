@@ -3,8 +3,8 @@
 
     <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Professores aprovados</h1>
 
-    <div class="relative drop-shadow-2xl w-full sm:rounded-lg xl:w-1/2  overflow-auto">
-        <div class="flex items-center justify-center md:justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+    <div class="relative drop-shadow-2xl sm:rounded-lg overflow-auto">
+        <div class="flex items-center justify-center lg:justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
             <label for="table-search-users" class="sr-only">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -18,7 +18,7 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="p-4 hidden md:table-cell">
+                    <th scope="col" class="p-4 hidden lg:table-cell">
                         ID
                     </th>
                     <th scope="col" class="flex-1 px-6 py-3 md:hidden">
@@ -43,7 +43,7 @@
             </thead>
             <tbody *ngFor="let teacher of teachers$ | async">
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
-                    <td class="hidden md:table-cell px-6 py-4">
+                    <td class="hidden lg:table-cell px-6 py-4">
                         {{teacher.id}}
                     </td>
                     <td class="px-6 py-4">
