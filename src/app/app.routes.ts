@@ -67,6 +67,12 @@ export const routes: Routes = [
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin']},
     loadComponent: () => import('./components/pages/notice/publish-notice/publish-notice.component').then((c) => c.PublishNoticeComponent)
+  },
+  {
+    path: 'ver-editais',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin', 'professor']},
+    loadComponent: () => import('./components/pages/notice/notices/notices.component').then((c) => c.NoticesComponent)
   }
 
 ];

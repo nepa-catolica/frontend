@@ -72,6 +72,6 @@ export class StudentsInProjectComponent implements OnInit {
         )
       )
     )
+    this.studentsRegisteredInTheProject$.subscribe(studentsInTheProject => this.students = studentsInTheProject)
   }
-
 }

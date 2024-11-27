@@ -57,13 +57,13 @@
                             Ver projeto
                         </th>
                     } @else {
-                        <th scope="col" class="flex-1 px-6 py-3 lg:hidden">
+                        <th scope="col" class="flex-1 px-6 py-3 md:hidden">
                             Ações
                         </th>
-                        <th scope="col" class="px-6 py-3 hidden lg:table-cell">
+                        <th scope="col" class="px-6 py-3 hidden md:table-cell">
                             Ver projeto
                         </th>
-                        <th scope="col" class="px-6 py-3 hidden lg:table-cell">
+                        <th scope="col" class="px-6 py-3 hidden md:table-cell">
                             Inscreva-se
                         </th>
                     }
@@ -86,7 +86,7 @@
                         {{project.descricao}}
                     </td>
                     <td class="px-6 py-3 hidden md:table-cell">
-                        {{project.professor.nome}}
+                        {{project.professor}}
                     </td>
                     <td class="px-6 py-3 hidden md:table-cell">
                         {{project.vagas}}
@@ -256,7 +256,7 @@
                         <h2>NÚCLEO DE EXTENSÃO E PESQUISA ACADÊMICA – NEPA <br> PROPOSTA DE PROJETO DE EXTENSÃO <br> EDITAL N.º 01/2024</h2>
                     </div>
                     <div class="border text-pretty  border-black p-2">
-                        <p>1. Nome do(a) professor(a) proponete do Projeto: {{projectSelected?.professor?.nome}}</p>
+                        <p>1. Nome do(a) professor(a) proponete do Projeto: {{projectSelected?.professor}}</p>
                     </div>
                     <div class="text-pretty border border-black p-2">
                         <p>Título do Projeto: {{projectSelected?.titulo}}</p>

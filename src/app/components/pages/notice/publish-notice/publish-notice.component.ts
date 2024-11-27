@@ -37,10 +37,14 @@ export class PublishNoticeComponent {
   }
 
   publishNotice() {
-    console.log(this.form)
-
     if (this.form.valid && this.selectedFile) {
-      this.noticeService.publishNotice(this.form.value).subscribe(
+
+      const formData = new FormData();
+      formData.append('nome', this.form.get('nome')?.value);
+      formData.append('descricao', this.form.get('descricao')?.value);
+      formData.append('arquivo', this.selectedFile);
+
+      this.noticeService.publishNotice(formData).subscribe(
         () => {
           this.toast.success('Edital publicado com sucesso!');
           this.router.navigate(['/home']);
