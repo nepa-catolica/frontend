@@ -37,7 +37,6 @@ export class StudentsInProjectComponent implements OnInit {
 
   approveStudent(idStudent: number) {
     const idProject = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(idProject)
     this.projectService.approveStudentInProject(idProject, idStudent).pipe(
       tap(() => {
         this.toast.success("Aluno inscrito no projeto com sucesso!");

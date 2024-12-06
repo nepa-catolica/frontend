@@ -1,7 +1,7 @@
 PROXY_CONFIG = [
   {
     context: ["/api"],
-    target: "http://localhost:5000",
+    target: "http://nepa.catolicapb.com.br:8890/",
     secure: true,
     logLevel: "debug",
     pathRewrite: {"^/api": ''}

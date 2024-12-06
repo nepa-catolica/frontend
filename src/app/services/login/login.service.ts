@@ -7,6 +7,7 @@ import { ISubToken } from '@/models/ISubToken';
 import { IAuth } from '@/models/IAuth';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '@//enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,10 @@ export class LoginService {
   private router = inject(Router);
   private toast = inject(ToastrService);
 
+  private apiUrl = environment.apiUrl;
+
   login(user: FormGroup) {
-    return this.http.post<IAuth>(`/api/auth/api/login`, user).pipe(
+    return this.http.post<IAuth>(`${this.apiUrl}/auth/api/login`, user).pipe(
       tap(res => {
         if (res.access_token.msg === "Credenciais inválidas") {
           this.toast.error('Usuário e/ou senha incorretos!');
@@ -29,7 +32,6 @@ export class LoginService {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.log(error)
         if (error.status === 401) {
           if (error.error.msg === "Credenciais inválidas") {
             this.toast.error('Usuário e/ou senha incorretos!');

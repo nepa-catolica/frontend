@@ -1,13 +1,15 @@
   <!-- drawer init and show -->
   <div class="text-center fixed left-5 top-5 z-40">
   <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-4 py-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 drop-shadow-lg hover:scale-110 transition-all" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
-    <i class="bi bi-arrow-right-short"></i>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+      <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+    </svg>
   </button>
   </div>
 
 <!-- drawer component -->
 <div id="drawer-navigation" class="fixed top-0 left-0 z-50 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
-  <a routerLink="/home" class="flex items-center  gap-2">
+  <a routerLink="/home" class="flex items-center gap-2">
     <img src="/assets/logo-nepa.png" width="36" alt="">
     <h3 id="drawer-navigation-label" class="text-lg font-poppins font-semibold text-gray-500 uppercase dark:text-gray-400">NEPA</h3>
   </a>
