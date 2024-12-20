@@ -8,5 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './login-register.component.css'
 })
 export class ButtonLoginRegisterComponent {
+
   @Input() text: string = "";
+  @Input() loading: boolean = false;
 }

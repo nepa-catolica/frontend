@@ -29,6 +29,7 @@ export class ApprovedProjectsComponent implements OnInit {
   public isActive: boolean = false;
   public projectSelected?: IProject;
   public studentSituationInTheProject: string = "";
+  public studentInTheProject: boolean = false;
 
   @ViewChild('content', {static: false}) el!: ElementRef;
   ngOnInit(): void {
@@ -41,6 +42,7 @@ export class ApprovedProjectsComponent implements OnInit {
         this.filteredProjects = projects.filter(project => project.professor.email === this.subToken?.email);
       }
     });
+
   }
 
   printPDF(id: number) {
@@ -109,5 +111,10 @@ export class ApprovedProjectsComponent implements OnInit {
     } else {
       this.projects$.subscribe(projects => this.filteredProjects = projects)
     }
+  }
+
+  verifySubscription(): boolean {
+    this.studentInTheProject = this.filteredProjects.some(student => student.email === this.subToken?.email);
+    return this.studentInTheProject;
   }
 }

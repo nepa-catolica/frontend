@@ -22,10 +22,7 @@ export class AppComponent implements OnInit{
   }
 
   isLoginPage(): boolean {
-    const token = localStorage.getItem('token');
-    const isLoginOrRegisterRoute = this.router.url === '/login' || this.router.url === '/cadastro';
-    
-    return isLoginOrRegisterRoute && !token;
+    return this.router.url === '/login' || this.router.url === '/cadastro';
   }
 
   logoutPage(): void {
