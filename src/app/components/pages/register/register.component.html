@@ -32,7 +32,7 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col text-second-color">
             <label for="registration" class="font-bold text-base font-lato">Matrícula:<span class="text-red-600">*</span></label>
-            <input type="text" id="registration" name="registration" class="bg-transparent rounded-md border-2 border-second-color" formControlName="matricula">
+            <input type="text" id="registration" name="registration" class="bg-transparent rounded-md border-2 border-second-color" mask="(00) 0 0000-0000" formControlName="matricula">
             @if (form.get('matricula')?.touched && formSubmitted) {
               @if (form.get('matricula')?.errors?.['required']) {
                 <small class="font-bold text-red-600">Campo obrigatório</small>

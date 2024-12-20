@@ -37,12 +37,14 @@ export class ApprovedProjectsComponent implements OnInit {
     this.subToken = this.loginService.decodeToken();
     this.projects$.subscribe((projects: IProject[]) => {
       if (this.subToken?.role != "professor") {
+        console.log(this.subToken)
         this.filteredProjects = projects;
+        console.log(this.filteredProjects)
+        console.log(this.verifySubscription())
       } else {
         this.filteredProjects = projects.filter(project => project.professor.email === this.subToken?.email);
       }
     });
-
   }
 
   printPDF(id: number) {
@@ -114,7 +116,10 @@ export class ApprovedProjectsComponent implements OnInit {
   }
 
   verifySubscription(): boolean {
-    this.studentInTheProject = this.filteredProjects.some(student => student.email === this.subToken?.email);
-    return this.studentInTheProject;
+    return this.filteredProjects.some(project =>
+      project.alunos_cadastrados.some((aluno: any) =>
+        aluno.email === this.subToken?.email
+      )
+    );
   }
 }

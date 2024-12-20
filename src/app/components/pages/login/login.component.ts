@@ -4,6 +4,7 @@ import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Va
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonLoginRegisterComponent } from '@/components/buttons/login-register/login-register.component';
 import { LoginService } from '@/services/login/login.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   loginService = inject(LoginService);
   formBuilderService = inject(NonNullableFormBuilder);
   router = inject(Router);
+  toast = inject(ToastrService);
   loading: boolean = false;
   formSubmitted: boolean = false;
 
@@ -32,8 +34,8 @@ export class LoginComponent {
     if (this.form.valid) {
       this.loginService.login(this.form.value).subscribe(
         () => {
-          this.loading = false;
           this.router.navigate(['/home']);
+          this.loading = false;
         },
         error => {
           this.loading = false;

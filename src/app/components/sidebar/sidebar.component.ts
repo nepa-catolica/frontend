@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   private router = inject(Router);
   private toast = inject(ToastrService);
   public subToken: ISubToken | null = null;
+  loading: boolean = false;
 
   ngOnInit(): void {
     this.initializeFlowbite();
@@ -31,10 +32,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   logout() {
+    this.loading = true;
     this.loginService.logout();
     this.router.navigate(['/login']).then(() => {
       this.cd.detectChanges();
       this.initializeFlowbite();
+      this.loading = false;
     });
   }
 

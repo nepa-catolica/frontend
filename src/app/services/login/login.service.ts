@@ -27,8 +27,8 @@ export class LoginService {
           this.toast.error('Usuário e/ou senha incorretos!');
         }
         if (res && res.access_token && res.access_token.access_token) {
-          this.toast.success('Login realizado com sucesso!')
           localStorage.setItem('token', res.access_token.access_token);
+          this.toast.success('Login realizado com sucesso!');
         }
       }),
       catchError((error: HttpErrorResponse) => {
