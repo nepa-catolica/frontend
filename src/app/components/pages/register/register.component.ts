@@ -11,7 +11,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent, NgxMaskDirective, NgxMaskPipe],
+  imports: [CommonModule, RouterLink, FormsModule, ReactiveFormsModule, ButtonLoginRegisterComponent, NgxMaskDirective],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -21,6 +21,8 @@ export class RegisterComponent {
   formBuilderService = inject(NonNullableFormBuilder);
   router = inject(Router);
   toast = inject(ToastrService);
+  formSubmitted: boolean = false;
+  loading: boolean = false;
 
   form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
@@ -34,13 +36,23 @@ export class RegisterComponent {
   }, {validators: passwordMatchValidator});
 
   register() {
+    this.formSubmitted = true;
+    this.loading = true;
+    this.form.markAllAsTouched();
     if (this.form.valid) {
       const { confirmPassword, ...formData } = this.form.value;
-      this.toast.success("Usuário criado com sucesso!");
-      this.registerSerivice.createUser(formData).subscribe();
+      this.registerSerivice.createUser(formData).subscribe(
+        () => {
+          this.toast.success("Usuário criado com sucesso!");
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+          this.toast.error("Erro ao cadastrar usuário, consulte o coordenador!");
+        } 
+      );
     } else {
-      this.toast.error("Erro ao criar usuário!");
-      console.error('Formulário inválido');
+      this.loading = false;
     }
   }
 }
