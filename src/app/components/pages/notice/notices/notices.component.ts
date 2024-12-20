@@ -5,6 +5,8 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { INotice } from '@//app/models/INotice';
 import { NoticeService } from '@//app/services/notice/notice.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '@//app/services/login/login.service';
+import { ISubToken } from '@//app/models/ISubToken';
 
 @Component({
   selector: 'app-notices',
@@ -17,11 +19,14 @@ export class NoticesComponent implements OnInit {
 
   private noticeService = inject(NoticeService);
   private toast = inject(ToastrService);
+  private loginService = inject(LoginService);
 
   public notices$: Observable<INotice[]> = new Observable<INotice[]>();
   public filter: string = "";
+  public subToken: ISubToken | null = null;
 
   ngOnInit(): void {
+    this.subToken = this.loginService.decodeToken();
     this.notices$ = this.noticeService.getAllNotices();
   }
 
