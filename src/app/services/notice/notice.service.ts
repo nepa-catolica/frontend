@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
 import { INotice } from '../../models/INotice';
-import { environment } from '@//enviroments/environment';
+import { environment } from '@//enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

@@ -7,7 +7,7 @@ import { ISubToken } from '@/models/ISubToken';
 import { IAuth } from '@/models/IAuth';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '@//enviroments/environment';
+import { environment } from '@//enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

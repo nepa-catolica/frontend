@@ -1,9 +1,11 @@
 <div class="h-screen">
-  <div>
+  <div class="h-full">
     @if (!isLoginPage()) {
-      <app-sidebar />
+      <app-sidebar>
+        <router-outlet />
+      </app-sidebar>
+    } @else {
+      <router-outlet />
     }
   </div>
-
-  <router-outlet/>
 </div>

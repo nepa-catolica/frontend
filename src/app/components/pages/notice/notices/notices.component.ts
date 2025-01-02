@@ -27,6 +27,7 @@ export class NoticesComponent implements OnInit {
 
   ngOnInit(): void {
     this.subToken = this.loginService.decodeToken();
+    console.log(this.subToken)
     this.notices$ = this.noticeService.getAllNotices();
   }
 
@@ -42,7 +43,6 @@ export class NoticesComponent implements OnInit {
   displayNotice(slug: string) {
     this.noticeService.getNotice(slug).subscribe();
   }
-
   deleteNotice(id: number) {
     this.noticeService.deleteNotice(id).pipe(
       switchMap(() => {
