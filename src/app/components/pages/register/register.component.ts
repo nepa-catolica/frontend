@@ -27,11 +27,12 @@ export class RegisterComponent {
   form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    matricula: ['', [Validators.required, Validators.minLength(6)]],
+    matricula: ['', [Validators.required, Validators.minLength(8)]],
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', Validators.required],
+    codigo_curso: ['', [Validators.required, Validators.minLength(7)]],
     role: ['', [Validators.required]]
   }, {validators: passwordMatchValidator});
 
@@ -39,20 +40,42 @@ export class RegisterComponent {
     this.formSubmitted = true;
     this.loading = true;
     this.form.markAllAsTouched();
+
+    const { confirmPassword, ...formData } = this.form.value;
+
+    if (this.form.get('role')?.value === 'professor') {
+      delete formData.matricula;
+      delete formData.curso;
+      this.form.get('matricula')?.disable();
+      this.form.get('curso')?.disable();
+    } else if (this.form.get('role')?.value === 'aluno') {
+      delete formData.codigo_curso;
+      this.form.get('codigo_curso')?.disable();
+    }
+
     if (this.form.valid) {
-      const { confirmPassword, ...formData } = this.form.value;
       this.registerSerivice.createUser(formData).subscribe(
         () => {
           this.toast.success("Usuário criado com sucesso!");
           this.loading = false;
+          this.form.reset();
+          this.enableControls();
         },
         (error) => {
           this.loading = false;
-          this.toast.error("Erro ao cadastrar usuário, consulte o coordenador!");
+          const errorMessage = error?.error?.msg || "Erro ao cadastrar usuário, consulte o coordenador!";
+          this.toast.error(`Erro ao cadastrar usuário: ${errorMessage}`);
+          this.enableControls();
         } 
       );
     } else {
       this.loading = false;
     }
+  }
+
+  enableControls() {
+    this.form.get('matricula')?.enable();
+    this.form.get('curso')?.enable();
+    this.form.get('codigo_curso')?.enable();
   }
 }
