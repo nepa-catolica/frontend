@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TeachersService } from '@/services/teachers/teachers.service';
-import { CommonModule, NgFor } from '@angular/common';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ITeacher } from '@/models/ITeacher';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-outstanding-teachers',
   standalone: true,
-  imports: [CommonModule, FormsModule,NgFor],
+  imports: [CommonModule, FormsModule],
   templateUrl: './outstanding-teachers.component.html',
   styleUrl: './outstanding-teachers.component.css'
 })
@@ -21,6 +21,7 @@ export class OutstandingTeachersComponent implements OnInit {
   private router = inject(Router);
 
   public teachers$: Observable<ITeacher[]> = new Observable<ITeacher[]>();
+  public allTeachers: ITeacher[] = [];
   public filter: string = "";
 
   ngOnInit(): void {
@@ -29,6 +30,9 @@ export class OutstandingTeachersComponent implements OnInit {
 
   loadTeachers(): void {
     this.teachers$ = this.teacherService.getOutstandingTeachers().pipe(
+      tap((teachers) => {
+        this.allTeachers = teachers;
+      }),
       catchError(() => {
         this.toast.error("Erro ao carregar professores!");
         return of([]);
@@ -40,7 +44,8 @@ export class OutstandingTeachersComponent implements OnInit {
     this.teacherService.approveTeachers(id).pipe(
       switchMap(() => {
         this.toast.success("Professor aprovado com sucesso!");
-        return this.teacherService.getOutstandingTeachers();
+        this.allTeachers = this.allTeachers.filter((teacher) => teacher.id !== id);
+        return of(this.allTeachers);
       }),
       catchError((error) => {
         this.toast.error("Erro ao aprovar professor!");
@@ -55,7 +60,8 @@ export class OutstandingTeachersComponent implements OnInit {
     this.teacherService.failTeachers(id).pipe(
       switchMap(() => {
         this.toast.error("Professor rejeitado!");
-        return this.teacherService.getOutstandingTeachers();
+        this.allTeachers = this.allTeachers.filter((teacher) => teacher.id !== id);
+        return of(this.allTeachers);
       })
     ).subscribe((teachers) => {
       this.teachers$ = of(teachers);
@@ -63,12 +69,8 @@ export class OutstandingTeachersComponent implements OnInit {
   }
 
   filterTeachers() {
-    this.teachers$ = this.teacherService.getOutstandingTeachers().pipe(
-      map(
-        (teachers: ITeacher[]) => teachers.filter(
-          (teacher: ITeacher) => teacher.nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
-        )
-      )
-    )
+    this.teachers$ = of(this.allTeachers.filter(
+      (teacher: ITeacher) => teacher.nome.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+    ));
   }
 }

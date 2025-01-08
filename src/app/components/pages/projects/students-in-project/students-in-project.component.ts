@@ -1,6 +1,6 @@
 import { IUser } from '@//app/models/IUser';
 import { ProjectService } from '@//app/services/project/project.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -10,7 +10,7 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 @Component({
   selector: 'app-students-in-project',
   standalone: true,
-  imports: [NgFor, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './students-in-project.component.html',
   styleUrl: './students-in-project.component.css'
 })

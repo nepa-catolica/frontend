@@ -1,6 +1,6 @@
 import { IProject } from '@//app/models/IProject';
 import { ProjectService } from '@//app/services/project/project.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { LoginService } from '@//app/services/login/login.service';
 @Component({
   selector: 'app-outstanding-projects',
   standalone: true,
-  imports: [NgFor, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './outstanding-projects.component.html',
   styleUrl: './outstanding-projects.component.css'
 })

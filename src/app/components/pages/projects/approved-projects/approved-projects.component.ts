@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { ProjectService } from '@/services/project/project.service';
-import { CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IProject } from '@/models/IProject';
 import { LoginService } from '@//app/services/login/login.service';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-approved-projects',
   standalone: true,
-  imports: [NgFor, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './approved-projects.component.html',
   styleUrl: './approved-projects.component.css'
 })
