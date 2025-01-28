@@ -1,4 +1,6 @@
+import { ErrorService } from '@//app/services/formError/error.service';
 import { NoticeService } from '@//app/services/notice/notice.service';
+import { fileValidator } from '@//app/validators/fileValidator';
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -18,11 +20,12 @@ export class PublishNoticeComponent {
   private noticeService = inject(NoticeService);
   private toast = inject(ToastrService);
   private formBuilderService = inject(NonNullableFormBuilder);
+  private formErrorService = inject(ErrorService);
   
   public form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(5)]],
     descricao: ['', [Validators.required, Validators.minLength(5)]],
-    arquivo_pdf: [null, Validators.required]
+    arquivo_pdf: [null, Validators.required, fileValidator()]
   });
 
   public selectedFile: File | null = null;
@@ -33,10 +36,19 @@ export class PublishNoticeComponent {
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
       this.form.patchValue({ arquivo_pdf: this.selectedFile });
+      this.form.get('arquivo_pdf')?.updateValueAndValidity();
     }
   }
 
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    return this.formErrorService.getErrorMessage(control!);
+  }
+
   publishNotice() {
+
+    this.form.markAllAsTouched();
+
     if (this.form.valid && this.selectedFile) {
 
       const formData = new FormData();

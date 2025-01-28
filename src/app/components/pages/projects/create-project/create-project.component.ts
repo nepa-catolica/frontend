@@ -4,6 +4,7 @@ import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Va
 import { ProjectService } from '@/services/project/project.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ErrorService } from '@//app/services/formError/error.service';
 
 interface content {
   id: string;
@@ -22,8 +23,10 @@ export class CreateProjectComponent {
   projectService = inject(ProjectService);
   formBuilderService = inject(NonNullableFormBuilder);
   toast = inject(ToastrService);
+  formErrorService = inject(ErrorService);
   router = inject(Router);
   formPage: number = 1;
+  formSubmitted: boolean = false;
 
   form: FormGroup = this.formBuilderService.group({
     titulo: ['', [Validators.required, Validators.minLength(5)]],
@@ -53,7 +56,15 @@ export class CreateProjectComponent {
     this.formPage--;
   }
 
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    return this.formErrorService.getErrorMessage(control!);
+  }
+
   createProject() {
+    this.formSubmitted = true;
+    this.form.markAllAsTouched();
+
     if (this.form.valid) {
       this.projectService.createProject(this.form.value).subscribe(
         () => {

@@ -39,11 +39,10 @@
                     </th>
                 </tr>
             </thead>
-            <tbody *ngFor="let teacher of teachers$ | async">
+            <tbody>
                 @for (teacher of teachers$ | async; track $index) {
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
                         <td class="px-6 py-4">
-                            <!-- Nome e email juntos para telas menores -->
                             <div class="block md:hidden">
                                 <div class="text-base font-semibold">{{teacher.nome}}</div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">{{teacher.email}}</div>

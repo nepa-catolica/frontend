@@ -19,9 +19,6 @@
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                  <th scope="col" class="p-4 hidden lg:table-cell">
-                      ID
-                  </th>
                   <th scope="col" class="flex-1 px-6 py-3 md:hidden">
                       Edital
                   </th>
@@ -46,19 +43,16 @@
           </thead>
           <tbody *ngFor="let notice of notices$ | async">
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
-                  <td class="hidden lg:table-cell px-6 py-4">
-                      {{notice.id}}
-                  </td>
                   <td class="px-6 py-4">
                       <div class="block md:hidden">
                           <div class="text-base font-semibold">{{notice.nome}}</div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">{{notice.descricao}}</div>
+                          <div class="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[250px]">{{notice.descricao}}</div>
                           <div class="text-sm text-gray-500 dark:text-gray-400">{{notice.data_criacao}}</div>
                       </div>
                       
                       <div class="hidden md:block text-base font-semibold">{{notice.nome}}</div>
                   </td>
-                  <td class="hidden md:table-cell px-6 py-4">
+                  <td class="hidden md:table-cell px-6 py-4 truncate max-w-[250px]">
                       {{notice.descricao}}
                   </td>
                   <td class="hidden md:table-cell px-6 py-4">

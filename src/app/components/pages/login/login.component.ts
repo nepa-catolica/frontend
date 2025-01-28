@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonLoginRegisterComponent } from '@/components/buttons/login-register/login-register.component';
 import { LoginService } from '@/services/login/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorService } from '@//app/services/formError/error.service';
+import { identifierValidator } from '@//app/validators/identifierValidator';
 
 @Component({
   selector: 'app-login',
@@ -17,20 +19,25 @@ export class LoginComponent {
 
   loginService = inject(LoginService);
   formBuilderService = inject(NonNullableFormBuilder);
-  router = inject(Router);
   toast = inject(ToastrService);
+  router = inject(Router);
+  formErrorService = inject(ErrorService);
   loading: boolean = false;
-  formSubmitted: boolean = false;
 
   form: FormGroup = this.formBuilderService.group({
-    identifier: ['', [Validators.required]],
+    identifier: ['', [Validators.required, identifierValidator]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    return this.formErrorService.getErrorMessage(control!);
+  }
+
   login() {
     this.loading = true;
-    this.formSubmitted = true;
-    this.form.markAllAsTouched()
+    this.form.markAllAsTouched();
+
     if (this.form.valid) {
       this.loginService.login(this.form.value).subscribe(
         () => {
@@ -42,7 +49,6 @@ export class LoginComponent {
         }
       );
       this.router.navigate(['/home']);
-      this.formSubmitted = false;
     } else {
       this.loading = false;
     }

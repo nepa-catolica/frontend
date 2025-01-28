@@ -7,6 +7,7 @@ import { RegisterService } from '@/services/register/register.service';
 import { passwordMatchValidator } from '@/validators/passwordMatchValidator';
 import { ToastrService } from 'ngx-toastr';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { ErrorService } from '@//app/services/formError/error.service';
 
 @Component({
   selector: 'app-register',
@@ -19,9 +20,9 @@ export class RegisterComponent {
 
   registerSerivice = inject(RegisterService);
   formBuilderService = inject(NonNullableFormBuilder);
+  formErrorService = inject(ErrorService);
   router = inject(Router);
   toast = inject(ToastrService);
-  formSubmitted: boolean = false;
   loading: boolean = false;
 
   form: FormGroup = this.formBuilderService.group({
@@ -36,8 +37,12 @@ export class RegisterComponent {
     role: ['', [Validators.required]]
   }, {validators: passwordMatchValidator});
 
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    return this.formErrorService.getErrorMessage(control!);
+  }
+
   register() {
-    this.formSubmitted = true;
     this.loading = true;
     this.form.markAllAsTouched();
 

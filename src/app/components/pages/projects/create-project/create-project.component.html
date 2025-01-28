@@ -11,6 +11,9 @@
           <div class="mb-5">
             <label for="name-project" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título do projeto:<span class="text-red-700">*</span></label>
             <input formControlName="titulo" type="text" id="name-project" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o título do projeto" required />
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['titulo'].invalid && form.controls['titulo'].touched">
+              {{ getErrorMessage('titulo') }}
+            </span>
           </div>
           <div class="flex flex-col gap-4 lg:flex-row items-start justify-center lg:items-center lg:justify-between">
             <fieldset>
@@ -44,6 +47,9 @@
                   </label>
                 </div>
               </div>
+              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['titulacao'].invalid && form.controls['titulacao'].touched">
+                {{ getErrorMessage('titulacao') }}
+              </span>
             </fieldset>
     
             <fieldset>
@@ -63,30 +69,52 @@
                   </label>
                 </div>
               </div>
+              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['situacao'].invalid && form.controls['situacao'].touched">
+                {{ getErrorMessage('situacao') }}
+              </span>
             </fieldset>
     
             <div class="mb-5 flex flex-col">
-              <label for="course" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Curso:<span class="text-red-600">*</span></label>
-              <select id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="curso">
+              <label for="course" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Curso:<span class="text-red-600">*</span>
+              </label>
+              <select
+                id="course"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                formControlName="curso"
+              >
+                <option class="text-black" value="">Selecione um curso...</option>
                 <option class="text-black" value="Educação Física">Ed. Física</option>
                 <option class="text-black" value="Ciências da Computação">C. da Computação</option>
                 <option class="text-black" value="Marketing">Marketing</option>
                 <option class="text-black" value="Direito">Direito</option>
                 <option class="text-black" value="Filosofia">Filosofia</option>
               </select>
+              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['curso'].invalid && form.controls['curso'].touched">
+                {{ getErrorMessage('curso') }}
+              </span>
             </div>
           </div>
           <div class="mb-5">
             <label for="linhaDePesquisa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Linha de Pesquisa:<span class="text-red-700">*</span></label>
             <textarea formControlName="linhaDePesquisa" id="linhaDePesquisa" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a linha de pesquisa do projeto..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['linhaDePesquisa'].invalid && form.controls['linhaDePesquisa'].touched">
+              {{ getErrorMessage('linhaDePesquisa') }}
+            </span>
           </div>
           <div class="mb-5">
             <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do projeto:<span class="text-red-700">*</span></label>
             <textarea formControlName="descricao" id="descricao" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a descrição do projeto..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['descricao'].invalid && form.controls['descricao'].touched">
+              {{ getErrorMessage('descricao') }}
+            </span>
           </div>
           <div class="relative">
             <label for="palavrasChave" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Palavras chave:<span class="text-red-700">*</span></label>
             <textarea formControlName="palavrasChave" id="palavrasChave" rows="1" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Palavras chave..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['palavrasChave'].invalid && form.controls['palavrasChave'].touched">
+              {{ getErrorMessage('palavrasChave') }}
+            </span>
           </div>
           <div class="flex items-center mt-5">
             <button type="button" class="text-white bg-gray-color hover:bg-gray-color focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-not-allowed" disabled (click)="previousPage()">
@@ -108,25 +136,40 @@
           <div class="mb-5">
             <label for="localizacao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Localização:<span class="text-red-700">*</span></label>
             <input formControlName="localizacao" type="text" id="localizacao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(Informar onde serão desenvolvidas as ações)" required />
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['localizacao'].invalid && form.controls['localizacao'].touched">
+              {{ getErrorMessage('localizacao') }}
+            </span>
           </div>
 
           <div class="mb-5">
             <label for="populacao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">População - Alvo:<span class="text-red-700">*</span></label>
             <input formControlName="populacao" type="text" id="populacao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="(Informar qual população a ser envolvida, descrevendo-a e quantificando-a.)" required />
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['populacao'].invalid && form.controls['populacao'].touched">
+              {{ getErrorMessage('populacao') }}
+            </span>
           </div>
 
           <div class="mb-5">
             <label for="justificativa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Justifcativa:<span class="text-red-700">*</span></label>
             <textarea formControlName="justificativa" id="justificativa" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a justificativa do projeto..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['justificativa'].invalid && form.controls['justificativa'].touched">
+              {{ getErrorMessage('justificativa') }}
+            </span>
           </div>
-    
+  
           <div class="mb-5">
             <label for="objetivoGeral" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivo geral:<span class="text-red-700">*</span></label>
             <textarea formControlName="objetivoGeral" id="objetivoGeral" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o objetivo geral do projeto..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['objetivoGeral'].invalid && form.controls['objetivoGeral'].touched">
+              {{ getErrorMessage('objetivoGeral') }}
+            </span>
           </div>
           <div class="mb-5">
             <label for="objetivoEspecifico" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Objetivos específicos:<span class="text-red-700">*</span></label>
             <textarea formControlName="objetivoEspecifico" id="objetivoEspecifico" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe os objetivos específicos do projeto..."></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['objetivoEspecifico'].invalid && form.controls['objetivoEspecifico'].touched">
+              {{ getErrorMessage('objetivoEspecifico') }}
+            </span>
           </div>
         
           <div class="flex items-center">
@@ -149,28 +192,43 @@
           <div class="relative">
             <label for="metodologia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Metodologia:<span class="text-red-700">*</span></label>
             <textarea formControlName="metodologia" id="metodologia" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a metodologia" required></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['metodologia'].invalid && form.controls['metodologia'].touched">
+              {{ getErrorMessage('metodologia') }}
+            </span>
           </div>
 
           <div class="relative">
             <label for="cronogramaDeAtividade" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cronograma de atividades:<span class="text-red-700">*</span></label>
             <textarea formControlName="cronogramaDeAtividade" id="cronogramaDeAtividade" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira o cronograma de atividades" required></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['cronogramaDeAtividade'].invalid && form.controls['cronogramaDeAtividade'].touched">
+              {{ getErrorMessage('cronogramaDeAtividade') }}
+            </span>
           </div>
 
           <div class="mb-5">
             <label for="referencias" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Referências:<span class="text-red-700">*</span></label>
             <textarea formControlName="referencias" id="referencias" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira as referências"></textarea>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['referencias'].invalid && form.controls['referencias'].touched">
+              {{ getErrorMessage('referencias') }}
+            </span>
           </div>
 
           <div class="mb-5">
             <label for="vagas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vagas:<span class="text-red-700">*</span></label>
             <input type="number" formControlName="vagas" id="vagas" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Insira a quantidade de vagas"/>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['vagas'].invalid && form.controls['vagas'].touched">
+              {{ getErrorMessage('vagas') }}
+            </span>
           </div>
 
-          <div class="flex items-start mb-5">
-            <div class="flex items-center h-5">
-              <input id="remember" type="checkbox" formControlName="termos" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
-            </div>
-            <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><span class="text-red-700">*</span>Aceito os termos de uso e a política de privacidade para o cadastro deste projeto!</label>
+          <div class="flex flex-col items-start mb-5">
+              <div class="flex items-center h-5">
+                <input id="remember" type="checkbox" formControlName="termos" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"><span class="text-red-700">*</span>Aceito os termos de uso e a política de privacidade para o cadastro deste projeto!</label>
+              </div>
+              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['termos'].invalid && form.controls['termos'].touched">
+                {{ getErrorMessage('termos') }}
+              </span>
           </div>
         
           <div class="flex items-center justify-between">

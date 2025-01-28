@@ -10,29 +10,24 @@
           <div class="mb-2">
             <label for="nome" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do edital:<span class="text-red-700">*</span></label>
             <input formControlName="nome" type="text" id="nome" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe o nome do edital" required />
-            @if (form.get('nome')?.touched) {
-              @if (form.get('nome')?.errors?.['required']) {
-                <small class="font-bold text-red-600">O campo é obrigatório</small>
-              } @else if (form.get('nome')?.errors?.['minlength']) {
-                <small class="font-bold text-red-600">Este campo deve ter no mínimo 5 dígitos</small>
-              }
-            }
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['nome'].invalid && form.controls['nome'].touched">
+              {{ getErrorMessage('nome') }}
+            </span>
           </div>
           <div class="mb-2">
             <label for="descricao" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição do edital:<span class="text-red-700">*</span></label>
             <input formControlName="descricao" type="text" id="descricao" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Informe a descrição do edital" required />
           </div>
-          @if (form.get('descricao')?.touched) {
-            @if (form.get('descricao')?.errors?.['required']) {
-              <small class="font-bold text-red-600">O campo é obrigatório</small>
-            } @else if (form.get('descricao')?.errors?.['minlength']) {
-              <small class="font-bold text-red-600">Este campo deve ter no mínimo 5 dígitos</small>
-            }
-          }
+          <span class="text-sm font-bold text-red-600" *ngIf="form.controls['descricao'].invalid && form.controls['descricao'].touched">
+            {{ getErrorMessage('descricao') }}
+          </span>
         </div>
         <div class="mb-5">
           <label id="pdf" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Enviar PDF:</label>
           <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="pdf" type="file" accept="application/pdf" (change)="onFileChange($event)">
+          <span class="text-sm font-bold text-red-600" *ngIf="form.controls['arquivo_pdf'].invalid && form.controls['arquivo_pdf'].touched">
+            {{ getErrorMessage('arquivo_pdf') }}
+          </span>
         </div>
         <button type="button" (click)="publishNotice()" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Enviar edital</button>
     </form>
