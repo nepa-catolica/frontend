@@ -34,7 +34,7 @@ export class OutstandingProjectsComponent implements OnInit {
     this.projects$ = this.projectService.getAllOutstandingProjects();
   }
 
-  printPDF(id: number) {
+  printPDF(id: string) {
     this.projectService.getProjectById(id).subscribe(project => {
       const element = this.el.nativeElement;
   
@@ -63,7 +63,7 @@ export class OutstandingProjectsComponent implements OnInit {
     });
   }
 
-  approveProject(id: number) {
+  approveProject(id: string) {
     this.projectService.approveProjects(id).pipe(
       switchMap(() => {
         this.toast.success("Projeto aprovado com sucesso!");
@@ -78,7 +78,7 @@ export class OutstandingProjectsComponent implements OnInit {
     });
   }
 
-  reproveProject(id: number) {
+  reproveProject(id: string) {
     this.projectService.failProjects(id).pipe(
       switchMap(() => {
         this.toast.error("Projeto rejeitado!");

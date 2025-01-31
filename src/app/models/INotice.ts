@@ -1,5 +1,5 @@
 export interface INotice {
-  id: number;
+  id: string;
   nome: string;
   descricao: string;
   slug: string;

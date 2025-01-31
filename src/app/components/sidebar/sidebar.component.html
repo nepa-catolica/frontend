@@ -26,8 +26,11 @@
                 </svg>
               </button>
               <ul id="dropdown-projects" class="hidden py-2 space-y-2">
-                <li>
+                <li *ngIf="subToken!.role == 'Admin'">
                   <a routerLink="/projetos-aprovados" [ngClass]="{'bg-gray-200': isRouteActive('/projetos-aprovados')}" class="flex items-center w-full p-2 text-gray-900 hover:text-gray-600 text-left transition duration-75 rounded-lg pl-11 group hover:bg-gray-200">Listar projetos</a>
+                </li>
+                <li *ngIf="subToken!.role == 'professor'">
+                  <a routerLink="/meus-projetos" [ngClass]="{'bg-gray-200': isRouteActive('/meus-projetos')}" class="flex items-center w-full p-2 text-gray-900 hover:text-gray-600 text-left transition duration-75 rounded-lg pl-11 group hover:bg-gray-200">Ver meus projetos</a>
                 </li>
                 <li *ngIf="subToken!.role == 'professor'">
                   <a routerLink="/criar-projeto" [ngClass]="{'bg-gray-200': isRouteActive('/criar-projeto')}" class="flex items-center w-full p-2 text-gray-900 hover:text-gray-600 text-left transition duration-75 rounded-lg pl-11 group hover:bg-gray-200">Cadastrar projeto</a>

@@ -1,4 +1,5 @@
 import { IProject } from '@//app/models/IProject';
+import { ErrorService } from '@//app/services/formError/error.service';
 import { ProjectService } from '@//app/services/project/project.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
@@ -16,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EditProjectComponent implements OnInit {
   projectService = inject(ProjectService);
   formBuilderService = inject(NonNullableFormBuilder);
+  formErrorService = inject(ErrorService);
   toast = inject(ToastrService);
   router = inject(Router);
   route = inject(ActivatedRoute);
@@ -40,13 +42,18 @@ export class EditProjectComponent implements OnInit {
     termos: [false, [Validators.required]],
     vagas: [null, [Validators.required]]
   })
+
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    return this.formErrorService.getErrorMessage(control!);
+  }
   
   ngOnInit(): void {
     this.getProject();
   }
 
   getProject() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id')!;
 
     this.projectService.getProjectById(id).subscribe((project: IProject) => {
       this.form.patchValue({...project})
@@ -63,7 +70,7 @@ export class EditProjectComponent implements OnInit {
 
   editProject() {
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id')!;
 
     if (this.form.valid) {
       this.projectService.editProject(id, this.form.value).subscribe(

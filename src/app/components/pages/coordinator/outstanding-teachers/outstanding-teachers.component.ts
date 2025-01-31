@@ -40,7 +40,7 @@ export class OutstandingTeachersComponent implements OnInit {
     );
   }
 
-  approveTeacher(id: number) {
+  approveTeacher(id: string) {
     this.teacherService.approveTeachers(id).pipe(
       switchMap(() => {
         this.toast.success("Professor aprovado com sucesso!");
@@ -56,7 +56,7 @@ export class OutstandingTeachersComponent implements OnInit {
     });
   }
 
-  reproveTeacher(id: number) {
+  reproveTeacher(id: string) {
     this.teacherService.failTeachers(id).pipe(
       switchMap(() => {
         this.toast.error("Professor rejeitado!");

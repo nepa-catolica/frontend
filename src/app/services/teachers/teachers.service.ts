@@ -13,11 +13,11 @@ export class TeachersService {
 
   private apiUrl = environment.apiUrl;
 
-  approveTeachers(teacherId: number) {
+  approveTeachers(teacherId: string) {
     return this.http.post(`${this.apiUrl}/admin/api/aprovar/professor/${teacherId}`, null).pipe(take(1));
   }
 
-  failTeachers(teacherId: number) {
+  failTeachers(teacherId: string) {
     return this.http.post(`${this.apiUrl}/admin/api/rejeitar/professor/${teacherId}`, null).pipe(take(1));
   }
 

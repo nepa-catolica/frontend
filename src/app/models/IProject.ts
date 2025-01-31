@@ -2,7 +2,7 @@ import { ITeacher } from "./ITeacher";
 import { IUser } from "./IUser";
 
 export interface IProject {
-  id: number;
+  id: string;
   titulo: string;
   descricao: string,
   vagas: number;

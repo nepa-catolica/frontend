@@ -1,82 +1,84 @@
 <div class="relative flex flex-col items-center justify-center h-full w-full overflow-hidden">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0 -z-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="absolute bottom-0 -z-0"><path fill="#1e429f" fill-opacity="1" d="M0,0L16,10.7C32,21,64,43,96,74.7C128,107,160,149,192,176C224,203,256,213,288,186.7C320,160,352,96,384,96C416,96,448,160,480,154.7C512,149,544,75,576,85.3C608,96,640,192,672,202.7C704,213,736,139,768,138.7C800,139,832,213,864,250.7C896,288,928,288,960,245.3C992,203,1024,117,1056,85.3C1088,53,1120,75,1152,69.3C1184,64,1216,32,1248,16C1280,0,1312,0,1344,16C1376,32,1408,64,1424,80L1440,96L1440,320L1424,320C1408,320,1376,320,1344,320C1312,320,1280,320,1248,320C1216,320,1184,320,1152,320C1120,320,1088,320,1056,320C1024,320,992,320,960,320C928,320,896,320,864,320C832,320,800,320,768,320C736,320,704,320,672,320C640,320,608,320,576,320C544,320,512,320,480,320C448,320,416,320,384,320C352,320,320,320,288,320C256,320,224,320,192,320C160,320,128,320,96,320C64,320,32,320,16,320L0,320Z"></path></svg>
 
-  <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Editais</h1>
+    <h1 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Editais</h1>
 
-  <div class="relative drop-shadow-2xl sm:rounded-lg overflow-auto">
-      <div class="gap-4 flex items-center justify-center lg:justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
-          <label for="table-search-users" class="sr-only">Search</label>
-          <div class="relative">
-              <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                  </svg>
-              </div>
-              <input type="text" id="table-search-users" [(ngModel)]="filter" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar editais">
-          </div>
-          <button type="button" (click)="filterNotices()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Filtrar</button>
-      </div>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                  <th scope="col" class="flex-1 px-6 py-3 md:hidden">
-                      Edital
-                  </th>
-                  <th scope="col" class="px-6 py-3 hidden md:table-cell">
-                      Nome
-                  </th>
-                  <th scope="col" class="px-6 py-3 hidden md:table-cell">
-                      Descrição
-                  </th>
-                  <th scope="col" class="px-6 py-3 hidden md:table-cell">
-                      Data de criação
-                  </th>
-                  <th scope="col" class="flex-1 px-6 py-3 md:table-cell">
-                      Ver edital
-                  </th>
-                  @if (subToken?.role != "professor") {
-                      <th scope="col" class="flex-1 px-6 py-3 md:table-cell">
-                          Remover
-                      </th>
-                  }
-              </tr>
-          </thead>
-          <tbody *ngFor="let notice of notices$ | async">
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
-                  <td class="px-6 py-4">
-                      <div class="block md:hidden">
-                          <div class="text-base font-semibold">{{notice.nome}}</div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[250px]">{{notice.descricao}}</div>
-                          <div class="text-sm text-gray-500 dark:text-gray-400">{{notice.data_criacao}}</div>
-                      </div>
-                      
-                      <div class="hidden md:block text-base font-semibold">{{notice.nome}}</div>
-                  </td>
-                  <td class="hidden md:table-cell px-6 py-4 truncate max-w-[250px]">
-                      {{notice.descricao}}
-                  </td>
-                  <td class="hidden md:table-cell px-6 py-4">
-                      {{notice.data_criacao}}
-                  </td>
-                  <td align="center" class="px-6 py-4">
-                    <button type="button" (click)="openNoticePDF(notice.slug)" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-                        <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625Z" />
-                        <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
-                      </svg>
-                    </button>
-                  </td>
-                    @if (subToken?.role != "professor") {
-                        <td align="center" class="px-6 py-4">
-                                <button type="button" (click)="deleteNotice(notice.id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
-                                        <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
+    <div class="relative drop-shadow-2xl sm:rounded-lg md:max-h-[90%] lg:max-h-[70%] max-w-[90%] sm:h-screen h-full w-full">
+        <div class="gap-4 flex items-center justify-center lg:justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 p-8">
+            <label for="table-search-users" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="text" id="table-search-users" [(ngModel)]="filter" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Filtrar editais">
+            </div>
+            <button type="button" (click)="filterNotices()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Filtrar</button>
+        </div>
+        <div class="overflow-auto max-h-[600px] sm:max-h-[600px] md:max-h-[800px] lg:max-h-[500px]">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="flex-1 px-6 py-3 md:hidden">
+                            Edital
+                        </th>
+                        <th scope="col" class="px-6 py-3 hidden md:table-cell">
+                            Nome
+                        </th>
+                        <th scope="col" class="px-6 py-3 hidden md:table-cell">
+                            Descrição
+                        </th>
+                        <th scope="col" class="px-6 py-3 hidden md:table-cell">
+                            Data de criação
+                        </th>
+                        <th scope="col" class="flex-1 px-6 py-3 md:table-cell">
+                            Ver edital
+                        </th>
+                        @if (subToken?.role != "professor") {
+                            <th scope="col" class="flex-1 px-6 py-3 md:table-cell">
+                                Remover
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody *ngFor="let notice of notices$ | async">
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 overflow-y-scroll">
+                        <td class="px-6 py-4">
+                            <div class="block md:hidden">
+                                <div class="text-base font-semibold">{{notice.nome}}</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[250px]">{{notice.descricao}}</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">{{notice.data_criacao}}</div>
+                            </div>
+                            
+                            <div class="hidden md:block text-base font-semibold">{{notice.nome}}</div>
                         </td>
-                    }
-              </tr>
-          </tbody>
-      </table>
-  </div>
+                        <td class="hidden md:table-cell px-6 py-4 truncate max-w-[250px]">
+                            {{notice.descricao}}
+                        </td>
+                        <td class="hidden md:table-cell px-6 py-4">
+                            {{notice.data_criacao}}
+                        </td>
+                        <td align="center" class="px-6 py-4">
+                        <button type="button" (click)="openNoticePDF(notice.slug)" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                            <path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625Z" />
+                            <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                            </svg>
+                        </button>
+                        </td>
+                        @if (subToken?.role != "professor") {
+                            <td align="center" class="px-6 py-4">
+                                    <button type="button" (click)="deleteNotice(notice.id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

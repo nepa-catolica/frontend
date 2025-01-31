@@ -28,15 +28,15 @@ export class StudentsInProjectComponent implements OnInit {
   }
 
   getStudentsRegisteredInTheProject() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id')!;
     this.studentsRegisteredInTheProject$ = this.projectService.getAllStudentsRegisteredInTheProject(id);
     this.studentsRegisteredInTheProject$.subscribe((response: any) => {
       this.students = response.alunos.sort((a: any, b: any) => a.id - b.id);
     });
   }
 
-  approveStudent(idStudent: number) {
-    const idProject = Number(this.route.snapshot.paramMap.get('id'));
+  approveStudent(idStudent: string) {
+    const idProject = this.route.snapshot.paramMap.get('id')!;
     this.projectService.approveStudentInProject(idProject, idStudent).pipe(
       tap(() => {
         this.toast.success("Aluno inscrito no projeto com sucesso!");
@@ -48,8 +48,8 @@ export class StudentsInProjectComponent implements OnInit {
     ).subscribe(() => this.getStudentsRegisteredInTheProject());
   }
 
-  reproveStudent(idStudent: number) {
-    const idProject = Number(this.route.snapshot.paramMap.get('id'));
+  reproveStudent(idStudent: string) {
+    const idProject = this.route.snapshot.paramMap.get('id')!;
     this.projectService.reproveStudentInProject(idProject, idStudent).pipe(
       tap(() => {
         this.toast.error("Aluno rejeitado no projeto com sucesso!");
@@ -62,7 +62,7 @@ export class StudentsInProjectComponent implements OnInit {
   }
 
   filterStudents() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = this.route.snapshot.paramMap.get('id')!;
 
     this.studentsRegisteredInTheProject$ = this.projectService.getAllStudentsRegisteredInTheProject(id).pipe(
       map(

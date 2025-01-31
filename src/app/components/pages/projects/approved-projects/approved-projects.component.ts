@@ -44,7 +44,7 @@ export class ApprovedProjectsComponent implements OnInit {
     });
   }
 
-  printPDF(id: number) {
+  printPDF(id: string) {
     this.projectService.getProjectById(id).subscribe(project => {
       const element = this.el.nativeElement;
   
@@ -83,7 +83,7 @@ export class ApprovedProjectsComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
-  registerInTheProject(id: number) {
+  registerInTheProject(id: string) {
     this.projectService.studentRegistrationInTheProject(id).pipe(
       tap(res => {
         this.toast.success("Inscrição realizada com sucesso!");

@@ -28,7 +28,7 @@ export class NoticeService {
     });
   }
 
-  deleteNotice(id: number) {
+  deleteNotice(id: string) {
     return this.http.delete(`${this.apiUrl}/admin/api/edital/deletar/${id}`).pipe(take(1));
   }
 }

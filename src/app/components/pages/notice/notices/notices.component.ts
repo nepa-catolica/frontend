@@ -43,7 +43,7 @@ export class NoticesComponent implements OnInit {
   displayNotice(slug: string) {
     this.noticeService.getNotice(slug).subscribe();
   }
-  deleteNotice(id: number) {
+  deleteNotice(id: string) {
     this.noticeService.deleteNotice(id).pipe(
       switchMap(() => {
         this.toast.error("Edital excluído com sucesso!");

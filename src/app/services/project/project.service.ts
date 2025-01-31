@@ -19,7 +19,7 @@ export class ProjectService {
     return this.http.post(`${this.apiUrl}/projetos/api/create`, project).pipe(take(1));
   }
 
-  getProjectById(projectId: number) {
+  getProjectById(projectId: string) {
     return this.http.get<IProject>(`${this.apiUrl}/projetos/api/listar/projeto/${projectId}`).pipe(take(1));
   }
 
@@ -27,35 +27,39 @@ export class ProjectService {
     return this.http.get<IProject[]>(`${this.apiUrl}/projetos/api/listar/projetos_aprovados`).pipe(take(1));
   }
 
+  getProjectsByTeachers() {
+    return this.http.get<IProject[]>(`${this.apiUrl}/projetos/api/meus_projetos`).pipe(take(1));
+  }
+
   getAllOutstandingProjects() {
     return this.http.get<IProject[]>(`${this.apiUrl}/projetos/api/listar/projetos_pendentes`).pipe(take(1));
   }
 
-  approveProjects(projectId: number) {
+  approveProjects(projectId: string) {
     return this.http.post(`${this.apiUrl}/admin/api/aprovar/projeto/${projectId}`, null).pipe(take(1));
   }
 
-  failProjects(projectId: number) {
+  failProjects(projectId: string) {
     return this.http.post(`${this.apiUrl}/admin/api/rejeitar/projeto/${projectId}`, null).pipe(take(1));
   }
 
-  editProject(id: number, project: FormGroup) {
+  editProject(id: string, project: FormGroup) {
     return this.http.put(`${this.apiUrl}/projetos/api/editar/projeto/${id}`, project).pipe(take(1));
   }
 
-  studentRegistrationInTheProject(idProject: number) {
+  studentRegistrationInTheProject(idProject: string) {
     return this.http.post(`${this.apiUrl}/projetos/api/register/aluno_projeto/${idProject}`, null).pipe(take(1));
   }
 
-  getAllStudentsRegisteredInTheProject(idProject: number) {
+  getAllStudentsRegisteredInTheProject(idProject: string) {
     return this.http.get<IUser[]>(`${this.apiUrl}/projetos/api/projeto/${idProject}/alunos`).pipe(take(1));1
   }
 
-  approveStudentInProject(idProject: number, idStudent: number) {
+  approveStudentInProject(idProject: string, idStudent: string) {
     return this.http.post(`${this.apiUrl}/projetos/api/aprovar/${idProject}/aluno/${idStudent}`, null).pipe(take(1));
   }
 
-  reproveStudentInProject(idProject:number, idStudent: number) {
+  reproveStudentInProject(idProject: string, idStudent: string) {
     return this.http.post(`${this.apiUrl}/projetos/api/projeto/${idProject}/aluno/${idStudent}/rejeitar`, null).pipe(take(1));
   }
 

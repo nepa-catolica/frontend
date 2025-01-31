@@ -33,6 +33,18 @@ export const routes: Routes = [
     loadComponent: () => import('./components/pages/projects/approved-projects/approved-projects.component').then((c) => c.ApprovedProjectsComponent)
   },
   {
+    path: 'projetos-pendentes',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin']},
+    loadComponent: () => import('./components/pages/projects/outstanding-projects/outstanding-projects.component').then((c) => c.OutstandingProjectsComponent)
+  },
+  {
+    path: 'meus-projetos',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['professor']},
+    loadComponent: () => import('./components/pages/projects/projects-by-teachers/projects-by-teachers.component').then((c) => c.ProjectsByTeachersComponent)
+  },
+  {
     path: 'aprovar-professor',
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin']},
@@ -43,12 +55,6 @@ export const routes: Routes = [
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin']},
     loadComponent: () => import('./components/pages/coordinator/approved-teachers/approved-teachers.component').then((c) => c.ApprovedTeachersComponent)
-  },
-  {
-    path: 'projetos-pendentes',
-    canActivate: [authGuard, accessRouteGuard],
-    data: {roles: ['Admin']},
-    loadComponent: () => import('./components/pages/projects/outstanding-projects/outstanding-projects.component').then((c) => c.OutstandingProjectsComponent)
   },
   {
     path: 'editar-projeto/:id',
@@ -74,5 +80,6 @@ export const routes: Routes = [
     data: {roles: ['Admin', 'professor']},
     loadComponent: () => import('./components/pages/notice/notices/notices.component').then((c) => c.NoticesComponent)
   }
+
 
 ];
