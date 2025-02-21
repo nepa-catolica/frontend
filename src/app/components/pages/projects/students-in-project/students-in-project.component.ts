@@ -1,4 +1,7 @@
+import { LoginComponent } from './../../login/login.component';
+import { ISubToken } from '@//app/models/ISubToken';
 import { IUser } from '@//app/models/IUser';
+import { LoginService } from '@//app/services/login/login.service';
 import { ProjectService } from '@//app/services/project/project.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
@@ -16,14 +19,18 @@ import { catchError, map, Observable, of, tap } from 'rxjs';
 })
 export class StudentsInProjectComponent implements OnInit {
   private projectService = inject(ProjectService);
+  private loginService = inject(LoginService);
   private route = inject(ActivatedRoute);
   private toast = inject(ToastrService);
+  public subToken: ISubToken | null = null;
+
 
   public studentsRegisteredInTheProject$: Observable<IUser[]> = new Observable<IUser[]>();
   public students: any[] = [];
   public filter: string = "";
 
   ngOnInit(): void {
+    this.subToken = this.loginService.decodeToken();
     this.getStudentsRegisteredInTheProject();
   }
 

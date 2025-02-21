@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { take } from 'rxjs';
 import { ITeacher } from '@/models/ITeacher';
-import { environment } from '@//enviroments/environment';
+import { environment } from '@//enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

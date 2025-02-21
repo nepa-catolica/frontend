@@ -25,7 +25,7 @@ export class PublishNoticeComponent {
   public form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(5)]],
     descricao: ['', [Validators.required, Validators.minLength(5)]],
-    arquivo_pdf: [null, Validators.required, fileValidator()]
+    arquivo_pdf: [null, [Validators.required, fileValidator()]]
   });
 
   public selectedFile: File | null = null;

@@ -58,6 +58,8 @@ export class RegisterComponent {
       this.form.get('codigo_curso')?.disable();
     }
 
+    console.log(this.form)
+
     if (this.form.valid) {
       this.registerSerivice.createUser(formData).subscribe(
         () => {
@@ -71,6 +73,7 @@ export class RegisterComponent {
           const errorMessage = error?.error?.msg || "Erro ao cadastrar usuário, consulte o coordenador!";
           this.toast.error(`Erro ao cadastrar usuário: ${errorMessage}`);
           this.enableControls();
+          console.log(error)
         } 
       );
     } else {

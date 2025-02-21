@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { take } from 'rxjs';
 import { IProject } from '@/models/IProject';
 import { IUser } from '../../models/IUser';
-import { environment } from '@//enviroments/environment';
+import { environment } from '@//enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'

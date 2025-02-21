@@ -23,12 +23,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   loading: boolean = false;
 
   ngOnInit(): void {
-    this.initializeFlowbite();
+    initFlowbite();
     this.subToken = this.loginService.decodeToken();
+    console.log(this.subToken)
   }
 
   ngAfterViewInit(): void {
-    this.initializeFlowbite();
+    initFlowbite();
   }
 
   logout() {
