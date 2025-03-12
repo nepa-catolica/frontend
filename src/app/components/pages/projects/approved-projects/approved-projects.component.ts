@@ -89,19 +89,17 @@ export class ApprovedProjectsComponent implements OnInit {
   }
 
   filterProjects() {
-    this.projects$ = this.projectService.getAllApprovedProjects().pipe(
-      map(
-        (projects: IProject[]) => projects.filter(
-          (project: IProject) => {
-            project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase());
-          }
-        )
-      )
-    )
-    if (this.filter.toLocaleLowerCase() == "") {
+    if (this.filter.trim() === "") {
       this.getProjects();
     } else {
-      this.projects$.subscribe(projects => this.filteredProjects = projects)
+      this.projects$ = this.projectService.getAllApprovedProjects().pipe(
+        map((projects: IProject[]) => 
+          projects.filter((project: IProject) => 
+            project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
+          )
+        )
+      );
+      this.projects$.subscribe(projects => this.filteredProjects = projects);
     }
   }
 

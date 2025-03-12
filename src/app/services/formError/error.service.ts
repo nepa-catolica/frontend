@@ -15,7 +15,12 @@ export class ErrorService {
       return `*Máximo de ${control.getError('maxlength').requiredLength} caracteres*`;
     } else if (control.hasError('passwordsMismatch')) {
       return '*As senhas não coincidem*';
-    }else if (control.hasError('invalidIdentifier')) {
+    } else if (control.hasError('invalidPasswordFormat')) {
+      return `A senha deve conter:<br>
+                - 8 caracteres<br> 
+                - Incluir letras e números
+              `;
+    } else if (control.hasError('invalidIdentifier')) {
       return '*Insira um email válido ou uma matrícula com 8 dígitos*';
     } else if (control.hasError('invalidFileType')) {
       return '*Apenas arquivos PDF são permitidos*';

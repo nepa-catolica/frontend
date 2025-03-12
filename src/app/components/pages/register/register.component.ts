@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { ErrorService } from '@//app/services/formError/error.service';
 import { LoginService } from '@//app/services/login/login.service';
+import { invalidPasswordFormat } from '@//app/validators/invalidPasswordFormat';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,7 @@ export class RegisterComponent {
     matricula: ['', [Validators.required, Validators.minLength(8)]],
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(8), invalidPasswordFormat]],
     confirmPassword: ['', Validators.required],
     codigo_curso: ['', [Validators.required, Validators.minLength(7)]],
     role: ['', [Validators.required]]

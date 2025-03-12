@@ -35,6 +35,7 @@ export class ProjectsByTeachersComponent implements OnInit {
   getProjects(): void {
     this.projectService.getProjectsByTeachers().pipe(
       tap((projects) => {
+        console.log(projects)
         this.allProjects = projects; 
         this.projectsSubject.next(projects);
       }),
