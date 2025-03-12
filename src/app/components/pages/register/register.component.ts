@@ -8,6 +8,7 @@ import { passwordMatchValidator } from '@/validators/passwordMatchValidator';
 import { ToastrService } from 'ngx-toastr';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { ErrorService } from '@//app/services/formError/error.service';
+import { LoginService } from '@//app/services/login/login.service';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +18,8 @@ import { ErrorService } from '@//app/services/formError/error.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-
   registerSerivice = inject(RegisterService);
+  loginService = inject(LoginService);
   formBuilderService = inject(NonNullableFormBuilder);
   formErrorService = inject(ErrorService);
   router = inject(Router);
@@ -58,22 +59,34 @@ export class RegisterComponent {
       this.form.get('codigo_curso')?.disable();
     }
 
-    console.log(this.form)
-
     if (this.form.valid) {
       this.registerSerivice.createUser(formData).subscribe(
         () => {
           this.toast.success("Usuário criado com sucesso!");
-          this.loading = false;
+          const loginForm: FormGroup = this.formBuilderService.group({
+            identifier: [this.form.get('email')?.value, [Validators.required, Validators.email]],
+            password: [this.form.get('password')?.value, [Validators.required, Validators.minLength(8)]]
+          });
+
+          if (this.form.get('role')?.value === 'aluno') {
+            this.loginService.login(loginForm.value).subscribe(
+              () => {
+                this.loading = false;
+                this.router.navigate(['/home']);
+              },
+              (error) => {
+                this.loading = false;
+                this.toast.error("Erro ao fazer login!");
+              }
+            )
+          }
           this.form.reset();
           this.enableControls();
         },
         (error) => {
           this.loading = false;
-          const errorMessage = error?.error?.msg || "Erro ao cadastrar usuário, consulte o coordenador!";
-          this.toast.error(`Erro ao cadastrar usuário: ${errorMessage}`);
+          this.toast.error(`Erro ao cadastrar usuário!`);
           this.enableControls();
-          console.log(error)
         } 
       );
     } else {

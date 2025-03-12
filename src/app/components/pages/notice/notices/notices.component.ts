@@ -27,7 +27,6 @@ export class NoticesComponent implements OnInit {
 
   ngOnInit(): void {
     this.subToken = this.loginService.decodeToken();
-    console.log(this.subToken)
     this.notices$ = this.noticeService.getAllNotices();
   }
 

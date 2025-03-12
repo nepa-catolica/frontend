@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     initFlowbite();
     this.subToken = this.loginService.decodeToken();
-    console.log(this.subToken)
   }
 
   ngAfterViewInit(): void {

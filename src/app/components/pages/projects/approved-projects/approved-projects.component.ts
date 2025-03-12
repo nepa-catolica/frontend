@@ -35,13 +35,6 @@ export class ApprovedProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.getProjects();
     this.subToken = this.loginService.decodeToken();
-    this.projects$.subscribe((projects: IProject[]) =>  {
-      if (this.subToken?.role != "professor") {
-        this.filteredProjects = projects;
-      } else {
-        this.filteredProjects = projects.filter(project => project.professor.email === this.subToken?.email);
-      }
-    });
   }
 
   printPDF(id: string) {
