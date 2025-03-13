@@ -53,6 +53,7 @@ export class OutstandingTeachersComponent implements OnInit {
       })
     ).subscribe((teachers) => {
       this.teachers$ = of(teachers);
+      this.loadTeachers();
     });
   }
 
@@ -65,6 +66,7 @@ export class OutstandingTeachersComponent implements OnInit {
       })
     ).subscribe((teachers) => {
       this.teachers$ = of(teachers);
+      this.loadTeachers();
     })
   }
 

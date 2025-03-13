@@ -31,6 +31,10 @@ export class OutstandingProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subToken = this.loginService.decodeToken();
+    this.loadProjects();
+  }
+
+  loadProjects() : void {
     this.projects$ = this.projectService.getAllOutstandingProjects();
   }
 
@@ -75,6 +79,7 @@ export class OutstandingProjectsComponent implements OnInit {
       })
     ).subscribe((projects) => {
       this.projects$ = of(projects);
+      this.loadProjects();
     });
   }
 
@@ -86,6 +91,7 @@ export class OutstandingProjectsComponent implements OnInit {
       })
     ).subscribe((projects) => {
       this.projects$ = of(projects);
+      this.loadProjects();
     })
   }
 
