@@ -4,11 +4,12 @@ import { TeachersService } from '@/services/teachers/teachers.service';
 import { ITeacher } from '@/models/ITeacher';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-approved-teachers',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './approved-teachers.component.html',
   styleUrl: './approved-teachers.component.css'
 })

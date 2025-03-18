@@ -79,7 +79,17 @@ export const routes: Routes = [
     canActivate: [authGuard, accessRouteGuard],
     data: {roles: ['Admin', 'professor']},
     loadComponent: () => import('./components/pages/notice/notices/notices.component').then((c) => c.NoticesComponent)
-  }
-
-
+  },
+  {
+    path: 'alterar-senha/:role/:id',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin']},
+    loadComponent: () => import('./components/pages/coordinator/change-password-user/change-password-user.component').then((c) => c.ChangePasswordUserComponent)
+  },
+  {
+    path: 'alunos',
+    canActivate: [authGuard, accessRouteGuard],
+    data: {roles: ['Admin']},
+    loadComponent: () => import('./components/pages/coordinator/students/students.component').then((c) => c.StudentsComponent)
+  },
 ];
