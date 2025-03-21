@@ -71,7 +71,7 @@ export class CreateProjectComponent {
           this.toast.success('Projeto criado com sucesso!', 'Sucesso');
           this.router.navigate(['/home']);
         },
-        (error) => this.toast.error(`Erro ao cadastrar projeto, verifique os campos!`, 'Erro');
+        (error) => this.toast.error(`Erro ao cadastrar projeto, verifique os campos!`, 'Erro')
       );
     }
   }
