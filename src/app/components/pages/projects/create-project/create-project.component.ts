@@ -29,15 +29,15 @@ export class CreateProjectComponent {
   formSubmitted: boolean = false;
 
   form: FormGroup = this.formBuilderService.group({
-    titulo: ['', [Validators.required, Validators.minLength(5)]],
-    titulacao: ['', [Validators.required, Validators.minLength(5)]],
-    situacao: ['', [Validators.required]],
+    titulo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+    titulacao: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+    situacao: ['', [Validators.required, Validators.maxLength(255)]],
     curso: ['', [Validators.required]],
-    linhaDePesquisa: ['', [Validators.required, Validators.minLength(5)]],
+    linhaDePesquisa: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
     descricao: ['', [Validators.required, Validators.minLength(5)]],
-    palavrasChave: ['', [Validators.required, Validators.minLength(5)]],
-    localizacao: ['', [Validators.required]],
-    populacao: ['', [Validators.required]],
+    palavrasChave: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+    localizacao: ['', [Validators.required, Validators.maxLength(255)]],
+    populacao: ['', [Validators.required, Validators.maxLength(255)]],
     justificativa: ['', [Validators.required]],
     objetivoGeral: ['', [Validators.required]],
     objetivoEspecifico: ['', [Validators.required]],
