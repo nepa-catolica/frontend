@@ -68,10 +68,10 @@ export class CreateProjectComponent {
     if (this.form.valid) {
       this.projectService.createProject(this.form.value).subscribe(
         () => {
-          this.toast.success('Projeto criado com sucesso!');
+          this.toast.success('Projeto criado com sucesso!', 'Sucesso');
           this.router.navigate(['/home']);
         },
-        (error) => this.toast.error(`${error.error.message}`)
+        (error) => this.toast.error(`Erro ao cadastrar projeto, verifique os campos!`, 'Erro');
       );
     }
   }
