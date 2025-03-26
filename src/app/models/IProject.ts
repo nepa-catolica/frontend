@@ -6,6 +6,7 @@ export interface IProject {
   titulo: string;
   descricao: string,
   vagas: number;
+  vagas_ocupadas: number;
   titulacao: string,
   curso: string,
   linhaDePesquisa: string,

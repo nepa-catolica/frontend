@@ -52,7 +52,13 @@
                             <td class="px-6 py-4 truncate max-w-[250px]">
                                 <div class="block md:hidden truncate max-w-[250px]">
                                     <div class="text-sm text-gray-500 dark:text-gray-400">{{project.titulo}}</div>
-                                    <div class="text-sm text-gray-500 dark:text-gray-400">Vagas: {{project.vagas}}</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                                        @if (project.vagas_ocupadas === null) {
+                                            Vagas: 0/{{project.vagas}}
+                                        } @else {
+                                            Vagas: {{project.vagas_ocupadas}}/{{project.vagas}}
+                                        }
+                                    </div>
                                 </div>
                                 <div class="hidden md:block text-base font-semibold">{{project.titulo}}</div>
                             </td>
@@ -73,7 +79,11 @@
                                 }
                             </td>
                             <td class="px-6 py-3 hidden md:table-cell">
-                                {{project.vagas}}
+                                @if (project.vagas_ocupadas === null) {
+                                    0/{{project.vagas}}
+                                } @else {
+                                    {{project.vagas_ocupadas}}/{{project.vagas}}
+                                }
                             </td>
                             <td class="px-6 py-4">
                             <div class="flex flex-col lg:hidden">

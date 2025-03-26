@@ -63,16 +63,23 @@
                                     </div>
                                     <div class="text-sm text-gray-500 dark:text-gray-400">
                                         <strong>Status:</strong>
-                                        @if (student && student.aprovado) {
-                                            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                                                Aprovado
-                                            </span>
-                                        } @else if (student && !student.aprovado) {
-                                            <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
-                                                <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
-                                                Pendente
-                                            </span>
+                                        @if (student) {
+                                            @if (student.aprovado) {
+                                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                    <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                                    Aprovado
+                                                </span>
+                                            } @else if (!student.aprovado && !student.reprovado) {
+                                                <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                                    <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                                                    Pendente
+                                                </span>
+                                            } @else if (!student.aprovado && student.reprovado) {
+                                                <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                                    <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                                    Reprovado
+                                                </span>
+                                            }
                                         }
                                     </div>
                                 </div>
@@ -90,23 +97,30 @@
                                 {{student.curso}}
                             </td>
                             <td class="px-6 py-4 hidden md:table-cell">
-                                @if (student && student.aprovado) {
-                                    <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                        <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                                        Aprovado
-                                    </span>
-                                } @else {
-                                    <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
-                                        <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
-                                        Pendente
-                                    </span>
+                                @if (student) {
+                                    @if (student.aprovado) {
+                                        <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                            <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                            Aprovado
+                                        </span>
+                                    } @else if (!student.aprovado && !student.reprovado) {
+                                        <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                            <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                                            Pendente
+                                        </span>
+                                    } @else if (!student.aprovado && student.reprovado) {
+                                        <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                            <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                            Reprovado
+                                        </span>
+                                    }
                                 }
                             </td>
                             @if (subToken!.role == "professor") {
                                 <td align="center" class="px-6 py-4">
                                     <div class="flex flex-col items-center justify-center lg:hidden">
                                         @if(student.aprovado) {
-                                            <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 cursor-not-allowed" disabled>
+                                            <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 cursor-not-allowed" disabled>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                                                 </svg>
@@ -118,11 +132,19 @@
                                                 </svg>
                                             </button>
                                         }
-                                        <button type="button" (click)="reproveStudent(student.aluno_id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
+                                        @if (student.reprovado) {
+                                            <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 cursor-not-allowed" disabled>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        } @else {
+                                            <button type="button" (click)="reproveStudent(student.aluno_id)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                        }
                                     </div>
                                     <div class="hidden lg:block text-base font-semibold">
                                         @if (student.aprovado) {
