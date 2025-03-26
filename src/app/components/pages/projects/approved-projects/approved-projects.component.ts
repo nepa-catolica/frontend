@@ -110,4 +110,12 @@ export class ApprovedProjectsComponent implements OnInit {
       )
     );
   }
+
+  getStudentStatus(project: any): string {
+    const student = project.alunos_cadastrados.find((aluno: any) => aluno.email === this.subToken?.email);
+    if (student) {
+        return student.aprovado ? 'approved' : 'awaitingApproval';
+    }
+    return 'notRegistered';
+  }
 }
