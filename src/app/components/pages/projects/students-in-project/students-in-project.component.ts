@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgxMaskPipe } from 'ngx-mask';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-students-in-project',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxMaskPipe],
   templateUrl: './students-in-project.component.html',
   styleUrl: './students-in-project.component.css'
 })
