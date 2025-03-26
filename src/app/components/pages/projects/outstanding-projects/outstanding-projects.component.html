@@ -75,7 +75,11 @@
                                 {{project.professor.nome}}
                             </td>
                             <td class="px-6 py-4 hidden md:table-cell">
-                                {{project.vagas_ocupadas}}/{{project.vagas}}
+                                @if (project.vagas_ocupadas === null) {
+                                    0/{{project.vagas}}
+                                } @else {
+                                    {{project.vagas_ocupadas}}/{{project.vagas}}
+                                }
                             </td>
                             <td align="center" class="px-6 py-4">
                                 <div class="flex flex-col items-center justify-center lg:hidden">
