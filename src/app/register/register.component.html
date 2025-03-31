@@ -1,0 +1,53 @@
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 md:p-6 h-full bg-second-color">
+  <section class="h-full w-full md:w-2/3 lg:w-2/5 flex flex-col justify-evenly items-center md:rounded-lg bg-primary-color filter drop-shadow-xl p-4">
+    <div class="flex items-center flex-col text-center">
+      <h1 class="font-poppins font-bold text-3xl text-second-color">BEM VINDO AO NEPA</h1>
+      <h3 class="font-poppins font-bold text-tertiary-color">Núcleo de Extensão e Pesquisa Acadêmica</h3>
+    </div>
+    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center p-2">
+      <div class="flex flex-col gap-4 md:gap-6 w-full">
+        <!-- Campos do formulário -->
+        <div class="flex flex-col text-second-color">
+          <label for="role" class="font-bold text-base font-lato">Tipo de usuário:<span class="text-red-600">*</span></label>
+          <select id="role" class="bg-transparent rounded-md border-2 border-second-color" formControlName="role">
+            <option class="text-black" value="" selected>Selecione o tipo de usuário...</option>
+            <option class="text-black" value="professor">Professor</option>
+            <option class="text-black" value="aluno">Aluno</option>
+          </select>
+          <span class="text-sm font-bold text-red-600" *ngIf="form.controls['role'].invalid && form.controls['role'].touched">
+            {{ getErrorMessage('role') }}
+          </span>
+        </div>
+        <!-- Outros campos seguem o mesmo padrão -->
+        <div class="flex flex-col text-second-color">
+          <label for="name" class="font-bold text-base font-lato">Nome:<span class="text-red-600">*</span></label>
+          <input type="text" id="name" name="name" class="bg-transparent rounded-md border-2 border-second-color" formControlName="nome" placeholder="Insira seu nome completo">
+          <span class="text-sm font-bold text-red-600" *ngIf="form.controls['nome'].invalid && form.controls['nome'].touched">
+            {{ getErrorMessage('nome') }}
+          </span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="w-full flex flex-col text-second-color">
+            <label for="password" class="font-bold text-base font-lato">Senha:<span class="text-red-600">*</span></label>
+            <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="password" placeholder="Insira uma senha">
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+              {{ getErrorMessage('password') }}
+            </span>
+          </div>
+          <div class="w-full flex flex-col text-second-color">
+            <label for="confirm-password" class="font-bold text-base font-lato">Confirmar senha:<span class="text-red-600">*</span></label>
+            <input type="password" id="confirm-password" name="confirm-password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="confirmPassword" placeholder="Confirme sua senha">
+            <span class="text-sm font-bold text-red-600" *ngIf="form.hasError('passwordMismatch') && form.touched">
+              *As senhas não coincidem*
+            </span>
+          </div>
+        </div>
+        <p class="text-second-color text-base font-lato font-bold">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>
+        <app-btn-login-register [text]="'CADASTRAR USUÁRIO'" [loading]="loading"></app-btn-login-register>
+      </div>
+    </form>
+  </section>
+  <section class="hidden md:flex flex-1 justify-center items-center h-full">
+    <img class="max-w-full max-h-full object-contain" src="/assets/logo-catolica.png" alt="Logo Católica">
+  </section>
+</div>

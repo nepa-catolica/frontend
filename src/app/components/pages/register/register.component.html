@@ -1,14 +1,14 @@
-<div class="flex justify-between items-center gap-4 h-full md:p-2">
-  <section class="w-full md:w-2/3 lg:w-2/5 flex flex-col justify-evenly md:flex md:flex-col md:items-center md:justify-center h-full bg-primary-color md:rounded-lg">
-    <div class="flex items-center flex-col text-center">
-      <h1 class="font-poppins font-bold text-3xl text-second-color">BEM VINDO AO NEPA</h1>
-      <h3 class="font-poppins font-bold text-tertiary-color">Núcleo de Extensão e Pesquisa acadêmica</h3>
+<div class="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-8 md:p-6 h-full bg-second-color">
+  <section class="h-full w-full md:w-2/3 lg:w-2/5 flex flex-col justify-evenly items-center p-2 md:rounded-lg bg-primary-color filter drop-shadow-xl">
+    <div class="flex items-center flex-col text-center p-4">
+      <h1 class="font-poppins font-bold text-xl md:text-3xl text-second-color">BEM VINDO AO NEPA</h1>
+      <h3 class="font-poppins font-bold text-sm md:text-lg text-tertiary-color">Núcleo de Extensão e Pesquisa acadêmica</h3>
     </div>
-    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center p-2">
-      <div class="flex flex-col gap-2 md:gap-6">
-        <div class="flex flex-col text-second-color ">
-          <label for="role" class="font-bold text-base font-lato">Tipo de usuário:<span class="text-red-600">*</span></label>
-          <select id="role" class="bg-transparent rounded-md border-2 border-second-color" formControlName="role">
+    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center p-">
+      <div class="flex flex-col gap-4 md:gap-6 w-full">
+        <div class="flex flex-col text-second-color">
+          <label for="role" class="font-bold text-sm md:text-base font-lato">Tipo de usuário:<span class="text-red-600">*</span></label>
+          <select id="role" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="role">
             <option class="text-black" value="" selected>Selecione o tipo de usuário...</option>
             <option class="text-black" value="professor">Professor</option>
             <option class="text-black" value="aluno">Aluno</option>
@@ -18,71 +18,68 @@
           </span>
         </div>
         <div class="flex flex-col text-second-color">
-          <label for="name" class="font-bold text-base font-lato">Nome:<span class="text-red-600">*</span></label>
-          <input type="text" id="name" name="name" class="bg-transparent rounded-md border-2 border-second-color" formControlName="nome" placeholder="Insira seu nome completo">
+          <label for="name" class="font-bold text-sm md:text-base font-lato">Nome:<span class="text-red-600">*</span></label>
+          <input type="text" id="name" name="name" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="nome" placeholder="Insira seu nome completo">
           <span class="text-sm font-bold text-red-600" *ngIf="form.controls['nome'].invalid && form.controls['nome'].touched">
             {{ getErrorMessage('nome') }}
           </span>
         </div>
         <div class="flex flex-col text-second-color">
-          <label for="email" class="font-bold text-base font-lato">Email:<span class="text-red-600">*</span></label>
-          <input type="email" id="email" name="email" class="bg-transparent rounded-md border-2 border-second-color" formControlName="email" placeholder="exemplo@exemplo.com">
+          <label for="email" class="font-bold text-sm md:text-base font-lato">Email:<span class="text-red-600">*</span></label>
+          <input type="email" id="email" name="email" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="email" placeholder="exemplo@exemplo.com">
           <span class="text-sm font-bold text-red-600" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
             {{ getErrorMessage('email') }}
           </span>
         </div>
-        <div class="flex items-center justify-between gap-2">
-          @if (form.get('role')?.value === 'professor') {
-            <div class="w-full flex flex-col text-second-color">
-              <label for="course_code" class="font-bold text-base font-lato">Código do curso:<span class="text-red-600">*</span></label>
-              <input type="text" id="course_code" name="course_code" class="bg-transparent rounded-md border-2 border-second-color" formControlName="codigo_curso" placeholder="Insira o código do seu curso">
-              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['codigo_curso'].invalid && form.controls['codigo_curso'].touched">
-                {{ getErrorMessage('codigo_curso') }}
-              </span>
-            </div>
-          } @else {
-            <div class="flex flex-col text-second-color">
-              <label for="registration" class="font-bold text-base font-lato">Matrícula:<span class="text-red-600">*</span></label>
-              <input
-                type="text"
-                id="registration"
-                name="registration"
-                class="bg-transparent rounded-md border-2 border-second-color"
-                formControlName="matricula"
-                placeholder="Insira a sua matrícula"
-                maxlength="15"
-                inputmode="numeric"
-              >
-              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['matricula'].invalid && form.controls['matricula'].touched">
-                {{ getErrorMessage('matricula') }}
-              </span>
-            </div>
-            <div class="w-full flex flex-col text-second-color">
-              <label for="course" class="font-bold text-base font-lato">Curso:<span class="text-red-600">*</span></label>
-              <select id="course" class="bg-transparent rounded-md border-2 border-second-color" formControlName="curso">
-                <option class="text-black" value="" selected>Selecione seu curso...</option>
-                <option class="text-black" value="Educação Física">Ed. Física</option>
-                <option class="text-black" value="Ciência da Computação">C. da Computação</option>
-                <option class="text-black" value="Marketing">Marketing</option>
-                <option class="text-black" value="Direito">Direito</option>
-                <option class="text-black" value="Filosofia">Filosofia</option>
-              </select>
-              <span class="text-sm font-bold text-red-600" *ngIf="form.controls['curso'].invalid && form.controls['curso'].touched">
-                {{ getErrorMessage('curso') }}
-              </span>
-            </div>
-          }
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="w-full flex flex-col text-second-color" *ngIf="form.get('role')?.value === 'professor'">
+            <label for="course_code" class="font-bold text-sm md:text-base font-lato">Código do curso:<span class="text-red-600">*</span></label>
+            <input type="text" id="course_code" name="course_code" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="codigo_curso" placeholder="Insira o código do seu curso">
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['codigo_curso'].invalid && form.controls['codigo_curso'].touched">
+              {{ getErrorMessage('codigo_curso') }}
+            </span>
+          </div>
+          <div class="w-full flex flex-col text-second-color" *ngIf="form.get('role')?.value !== 'professor'">
+            <label for="registration" class="font-bold text-sm md:text-base font-lato">Matrícula:<span class="text-red-600">*</span></label>
+            <input
+              type="text"
+              id="registration"
+              name="registration"
+              class="bg-transparent rounded-md border-2 border-second-color p-2"
+              formControlName="matricula"
+              placeholder="Insira a sua matrícula"
+              maxlength="15"
+              inputmode="numeric"
+            >
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['matricula'].invalid && form.controls['matricula'].touched">
+              {{ getErrorMessage('matricula') }}
+            </span>
+          </div>
+          <div class="w-full flex flex-col text-second-color" *ngIf="form.get('role')?.value !== 'professor'">
+            <label for="course" class="font-bold text-sm md:text-base font-lato">Curso:<span class="text-red-600">*</span></label>
+            <select id="course" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="curso">
+              <option class="text-black" value="" selected>Selecione seu curso...</option>
+              <option class="text-black" value="Educação Física">Ed. Física</option>
+              <option class="text-black" value="Ciência da Computação">C. da Computação</option>
+              <option class="text-black" value="Marketing">Marketing</option>
+              <option class="text-black" value="Direito">Direito</option>
+              <option class="text-black" value="Filosofia">Filosofia</option>
+            </select>
+            <span class="text-sm font-bold text-red-600" *ngIf="form.controls['curso'].invalid && form.controls['curso'].touched">
+              {{ getErrorMessage('curso') }}
+            </span>
+          </div>
         </div>
-        <div class="flex items-center justify-between gap-2">
-          <div class="flex flex-col text-second-color">
-            <label for="password" class="font-bold text-base font-lato">Senha:<span class="text-red-600">*</span></label>
-            <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="password" placeholder="Insira uma senha">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex flex-col text-second-color w-full">
+            <label for="password" class="font-bold text-sm md:text-base font-lato">Senha:<span class="text-red-600">*</span></label>
+            <input type="password" id="password" name="password" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="password" placeholder="Insira uma senha">
             <span class="text-sm font-bold text-red-600" *ngIf="form.controls['password'].invalid && form.controls['password'].touched" [innerHTML]="getErrorMessage('password')">
             </span>
           </div>
-          <div class="flex flex-col text-second-color">
-            <label for="confirm-password" class="font-bold text-base font-lato">Confirmar senha:<span class="text-red-600">*</span></label>
-            <input type="password" id="confirm-password" name="confirm-password" class="bg-transparent rounded-md border-2 border-second-color" formControlName="confirmPassword" placeholder="confirme sua senha">
+          <div class="flex flex-col text-second-color w-full">
+            <label for="confirm-password" class="font-bold text-sm md:text-base font-lato">Confirmar senha:<span class="text-red-600">*</span></label>
+            <input type="password" id="confirm-password" name="confirm-password" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="confirmPassword" placeholder="confirme sua senha">
             <span
               class="text-sm font-bold text-red-600"
               *ngIf="form.hasError('passwordMismatch') && form.touched"
@@ -92,19 +89,19 @@
           </div>
         </div>
         <div class="flex flex-col text-second-color">
-          <label for="phone" class="font-bold text-base font-lato">Telefone:<span class="text-red-600">*</span></label>
-          <input type="text" id="phone" name="id" class="bg-transparent rounded-md border-2 border-second-color" formControlName="telefone" mask="(00) 0 0000-0000" placeholder="Insira seu telefone">
+          <label for="phone" class="font-bold text-sm md:text-base font-lato">Telefone:<span class="text-red-600">*</span></label>
+          <input type="text" id="phone" name="id" class="bg-transparent rounded-md border-2 border-second-color p-2" formControlName="telefone" mask="(00) 0 0000-0000" placeholder="Insira seu telefone">
           <span class="text-sm font-bold text-red-600" *ngIf="form.controls['telefone'].invalid && form.controls['telefone'].touched">
             {{ getErrorMessage('telefone') }}
           </span>
         </div>
-        <p class="text-second-color text-base font-lato font-bold">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>
-        <app-btn-login-register [text]="'CADASTRAR USUÁRIO'" [loading]="loading"/>
+        <p class="text-second-color text-sm md:text-base font-lato font-bold text-center">Já possui conta?<a routerLink="/login" routerLinkActive="active" class="font-bold text-tertiary-color"> Realize o login</a></p>
+        <app-btn-login-register [text]="'CADASTRAR USUÁRIO'" [loading]="loading" class="w-full"/>
       </div>
     </form>
   </section>
-  <section class="relative hidden flex-1 justify-evenly scale-75 lg:scale-100 md:flex md:flex-col md:items-center md:justify-center h-full filter drop-shadow-xl">
-    <img class="absolute top-50 left-50 z-10" src="/assets/logo-catolica.png" alt="">
+  <section class="relative hidden md:flex flex-1 justify-evenly scale-75 lg:scale-100 flex-col items-center h-full filter drop-shadow-xl">
+    <img class="absolute top-50 left-50 z-10 max-w-full" src="/assets/logo-catolica.png" alt="">
     <figure class="figure h-full cursor-pointer filter grayscale opacity-55 drop-shadow-sm">
     </figure>
   </section>
