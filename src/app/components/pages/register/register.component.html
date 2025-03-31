@@ -43,7 +43,16 @@
           } @else {
             <div class="flex flex-col text-second-color">
               <label for="registration" class="font-bold text-base font-lato">Matrícula:<span class="text-red-600">*</span></label>
-              <input type="text" id="registration" name="registration" class="bg-transparent rounded-md border-2 border-second-color" mask="00000000" formControlName="matricula" placeholder="Insira a sua matrícula">
+              <input
+                type="text"
+                id="registration"
+                name="registration"
+                class="bg-transparent rounded-md border-2 border-second-color"
+                formControlName="matricula"
+                placeholder="Insira a sua matrícula"
+                maxlength="15"
+                inputmode="numeric"
+              >
               <span class="text-sm font-bold text-red-600" *ngIf="form.controls['matricula'].invalid && form.controls['matricula'].touched">
                 {{ getErrorMessage('matricula') }}
               </span>

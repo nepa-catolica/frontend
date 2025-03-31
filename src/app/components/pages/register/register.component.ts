@@ -30,10 +30,10 @@ export class RegisterComponent {
   form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    matricula: ['', [Validators.required, Validators.minLength(8)]],
+    matricula: ['', [Validators.required, Validators.min(10000000), Validators.max(9223372036854775807)]],
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
-    password: ['', [Validators.required, Validators.minLength(8), invalidPasswordFormat]],
+    password: ['', [Validators.required]],
     confirmPassword: ['', Validators.required],
     codigo_curso: ['', [Validators.required, Validators.minLength(7)]],
     role: ['', [Validators.required]]
@@ -88,7 +88,7 @@ export class RegisterComponent {
           this.loading = false;
           this.toast.error(`Erro ao cadastrar usuário!`);
           this.enableControls();
-        } 
+        }
       );
     } else {
       this.loading = false;
