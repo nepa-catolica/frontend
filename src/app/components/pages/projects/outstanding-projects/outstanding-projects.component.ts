@@ -32,7 +32,6 @@ export class OutstandingProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.subToken = this.loginService.decodeToken();
     this.loadProjects();
-    this.projects$.subscribe(p => console.log(p))
   }
 
   loadProjects() : void {

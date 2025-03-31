@@ -18,7 +18,7 @@ export class ErrorService {
     } else if (control.hasError('invalidPasswordFormat')) {
       return `A senha deve conter:<br>
                 - 8 caracteres<br> 
-                - Incluir letras e números
+                - Apenas letras e números
               `;
     } else if (control.hasError('invalidIdentifier')) {
       return '*Insira um email válido ou uma matrícula com 8 dígitos*';
