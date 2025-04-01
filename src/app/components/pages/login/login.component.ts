@@ -35,7 +35,6 @@ export class LoginComponent {
   }
 
   login() {
-    throw new Error('Teste de erro do Sentry');
     this.loading = true;
     this.form.markAllAsTouched();
 

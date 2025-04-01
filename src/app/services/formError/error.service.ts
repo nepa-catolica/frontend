@@ -21,6 +21,8 @@ export class ErrorService {
       return '*Apenas arquivos PDF são permitidos*';
     } else if (control.hasError('fileTooLarge')) {
       return '*O arquivo deve ter no máximo 5MB*';
+    } else if (control.hasError('pattern')) {
+      return '*A matrícula deve conter apenas letras ou números*';
     }
 
     return '';

@@ -30,7 +30,7 @@ export class RegisterComponent {
   form: FormGroup = this.formBuilderService.group({
     nome: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    matricula: ['', [Validators.required, Validators.min(10000000), Validators.max(9223372036854775807)]],
+    matricula: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]*$')]],
     curso: ['', [Validators.required, Validators.minLength(3)]],
     telefone: ['', [Validators.required, Validators.minLength(11)]],
     password: ['', [Validators.required]],
