@@ -16,7 +16,7 @@ export class ErrorService {
     } else if (control.hasError('passwordsMismatch')) {
       return '*As senhas não coincidem*';
     } else if (control.hasError('invalidIdentifier')) {
-      return '*Insira um email válido ou uma matrícula com 8 dígitos*';
+      return '*Email ou matrícula inválida. Verifique o formato e tente novamente*';
     } else if (control.hasError('invalidFileType')) {
       return '*Apenas arquivos PDF são permitidos*';
     } else if (control.hasError('fileTooLarge')) {

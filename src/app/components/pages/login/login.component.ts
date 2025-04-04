@@ -34,6 +34,12 @@ export class LoginComponent {
     return this.formErrorService.getErrorMessage(control!);
   }
 
+  onIdentifierInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const cleanedValue = input.value.replace(/[^a-zA-Z0-9@._\-+]/g, '');
+    this.form.get('identifier')?.setValue(cleanedValue, { emitEvent: false });
+  }
+
   login() {
     this.loading = true;
     this.form.markAllAsTouched();
