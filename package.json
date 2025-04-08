@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/router": "^17.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
     "@sentry/angular": "^9.10.1",
     "@sentry/tracing": "^7.120.3",
     "bootstrap-icons": "^1.11.3",

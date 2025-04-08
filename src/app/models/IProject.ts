@@ -25,5 +25,4 @@ export interface IProject {
   data_limite_edicao: Date,
   aprovado: boolean,
   professor: ITeacher,
-  alunos_cadastrados: number,
 }

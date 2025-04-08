@@ -21,8 +21,8 @@ export class ApprovedProjectsComponent implements OnInit {
   private projectService = inject(ProjectService);
   private loginService = inject(LoginService);
   private toast = inject(ToastrService);
-
   private projects$: Observable<any[]> = new Observable<IProject[]>();
+
   public filteredProjects: any[] = [];
   public filter: string = "";
   public subToken: ISubToken | null = null;
@@ -32,6 +32,7 @@ export class ApprovedProjectsComponent implements OnInit {
   public studentInTheProject: boolean = false;
 
   @ViewChild('content', {static: false}) el!: ElementRef;
+
   ngOnInit(): void {
     this.getProjects();
     this.subToken = this.loginService.decodeToken();
@@ -40,7 +41,7 @@ export class ApprovedProjectsComponent implements OnInit {
   printPDF(id: string) {
     this.projectService.getProjectById(id).subscribe(project => {
       const element = this.el.nativeElement;
-  
+
       html2canvas(element).then(canvas => {
         const doc = new jsPDF('p', 'pt', 'a4', true);
         const imgData = canvas.toDataURL('image/png');
@@ -50,17 +51,17 @@ export class ApprovedProjectsComponent implements OnInit {
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         let heightLeft = imgHeight;
         let position = 0;
-  
+
         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= a4Height; 
-  
+        heightLeft -= a4Height;
+
         while (heightLeft >= 0) {
           position = heightLeft - imgHeight;
           doc.addPage();
           doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
           heightLeft -= a4Height;
         }
-  
+
         doc.save(`${project.titulo}.pdf`);
       });
     });
@@ -93,32 +94,13 @@ export class ApprovedProjectsComponent implements OnInit {
       this.getProjects();
     } else {
       this.projects$ = this.projectService.getAllApprovedProjects().pipe(
-        map((projects: IProject[]) => 
-          projects.filter((project: IProject) => 
+        map((projects: IProject[]) =>
+          projects.filter((project: IProject) =>
             project.titulo.toLocaleLowerCase().includes(this.filter.toLocaleLowerCase())
           )
         )
       );
       this.projects$.subscribe(projects => this.filteredProjects = projects);
     }
-  }
-
-  verifySubscription(): boolean {
-    return this.filteredProjects.some(project =>
-      project.alunos_cadastrados.some((aluno: any) =>
-        aluno.email === this.subToken?.email
-      )
-    );
-  }
-
-  getStudentStatus(project: any): string {
-    const student = project.alunos_cadastrados.find((aluno: any) => aluno.email === this.subToken?.email);
-    if (student) {
-        if (student.reprovado) {
-            return 'rejected';
-        }
-        return student.aprovado ? 'approved' : 'awaitingApproval';
-    }
-    return 'notRegistered';
   }
 }
