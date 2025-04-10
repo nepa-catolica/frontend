@@ -1,10 +1,6 @@
 <div class="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-8 md:p-6 h-full bg-second-color">
   <section class="h-full w-full md:w-2/3 lg:w-2/5 flex flex-col justify-evenly items-center p-2 md:rounded-lg bg-primary-color filter drop-shadow-xl">
-    <div class="flex items-center flex-col text-center p-4">
-      <h1 class="font-poppins font-bold text-xl md:text-3xl text-second-color">BEM VINDO AO NEPA</h1>
-      <h3 class="font-poppins font-bold text-sm md:text-lg text-tertiary-color">Núcleo de Extensão e Pesquisa acadêmica</h3>
-    </div>
-    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center p-">
+    <form [formGroup]="form" (submit)="register()" class="w-full flex flex-col items-center justify-center p-4 lg:p-6">
       <div class="flex flex-col gap-4 md:gap-6 w-full">
         <div class="flex flex-col text-second-color">
           <label for="role" class="font-bold text-sm md:text-base font-lato">Tipo de usuário:<span class="text-red-600">*</span></label>
